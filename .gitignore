@@ -1,4 +1,4 @@
 *.class
 dist/
 build/
-docs/
+doc/
