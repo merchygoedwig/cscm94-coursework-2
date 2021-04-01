@@ -15,3 +15,4 @@
 - Use meaningful names when you create branches (i.e. adding-someFeature, fixing-[commit hash])
 
 ## Coding conventions
+- Coding conventions for this project are defined [here](https://drive.google.com/file/d/1sKMj3rkKobZePRCtAFRudB2C6XXPlqT5/view?usp=sharing).
