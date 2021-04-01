@@ -1,7 +1,7 @@
 # What you need to know
 
 ## General
-- This GitHub repo uses Ant in GitHub Actions to check for breaking code, and to host the most recent build of JavaDoc documentation using GitHub pages (TBC).
+- This GitHub repo uses Ant in GitHub Actions to check for breaking code, and to host the most recent build of JavaDoc documentation using GitHub pages [which can be found here](https://merchygoedwig.github.io/cscm94-coursework-2/).
 - Push notifications for all actions are sent to the `#group_8_cscm94` channel on the MSc Computer Science Discord server.
 - Only source code is to be hosted here, if you are using an IDE that creates non-source code material (IntelliJ/Eclipse etc.) for project management, please make sure that these files do not get committed! You can make sure this doesn't happen by pattern matching in `.gitignore`!
 
