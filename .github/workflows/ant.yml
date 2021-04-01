@@ -23,3 +23,10 @@ jobs:
         java-version: 1.8
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
+    - name: Generate JavaDoc
+      run: ant doc -buildfile build.xml
+    - name: Deploy documentation
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        branch: gh-pages
+        folder: doc
