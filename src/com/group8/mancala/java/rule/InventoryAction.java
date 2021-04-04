@@ -1,9 +1,9 @@
-package com.group8.mancala.rule;
+package com.group8.mancala.java.rule;
 
 import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.playerfacing.Player;
 
-public class InventoryAction extends HandAction{
+public class InventoryAction extends HandAction {
     private static final Hole hole = null;
 
     public InventoryAction(Player player) {

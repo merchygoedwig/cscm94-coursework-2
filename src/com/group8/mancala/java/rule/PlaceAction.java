@@ -1,4 +1,4 @@
-package com.group8.mancala.rule;
+package com.group8.mancala.java.rule;
 
 import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.gameplayobjects.Mancala;
@@ -17,8 +17,9 @@ public class PlaceAction extends HandAction {
      * Default constructor for MoveAction, this is to be used in the context
      * of a Hand belonging to a Player (each Hand will have an instance of
      * MoveCounter for checking valid moves).
+     *
      * @param player the instance of Player that originated the action
-     * @param hole the hole which a Player has targeted
+     * @param hole   the hole which a Player has targeted
      */
     public PlaceAction(Player player, Hole hole) {
         super(player, hole);
@@ -29,6 +30,7 @@ public class PlaceAction extends HandAction {
      * the Hole "belongs" to the opponent. Every other case is allowable. Here
      * we are performing this by doing ~targetBelongsToOpponent(originator, target) &
      * ~targetIsMancala(target)
+     *
      * @return Boolean of if counters are allowed to be placed into a Hole by
      * a given Player.
      */

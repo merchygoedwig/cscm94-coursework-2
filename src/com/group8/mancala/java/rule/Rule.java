@@ -1,4 +1,4 @@
-package com.group8.mancala.rule;
+package com.group8.mancala.java.rule;
 
 /**
  * Rules are used to check the validity of moves during a game, each action
@@ -10,6 +10,7 @@ package com.group8.mancala.rule;
 public interface Rule {
     /**
      * Checks for if a rule is violated by a move or not
+     *
      * @return Boolean representation of the validity of a given rule given
      * the instance's originator and target values.
      */
