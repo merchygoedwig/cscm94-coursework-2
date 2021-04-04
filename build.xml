@@ -1,7 +1,7 @@
-<project name="Mancala" default="dist" basedir=".">
+<project name="com.group8.mancala.gameplayobjects.Mancala" default="dist" basedir=".">
   <!-- based on the example Ant build file provided by Apache -->
   <description>
-    Ant build file for Mancala project (CSCM94, Group 8 - 2020/21)
+      Ant build file for Mancala project (CSCM94, Group 8 - 2020/21)
   </description>
   <!-- set global properties for this build -->
   <property name="src" location="src"/>
