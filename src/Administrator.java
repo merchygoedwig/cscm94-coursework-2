@@ -33,7 +33,7 @@ public class Administrator {
 
 	/**
 	 * 
-	 * assign a player's player statue be true;
+	 * assign a player's playing statue be true;
 	 */
    void assigned(Player p) {
     	    	   	
