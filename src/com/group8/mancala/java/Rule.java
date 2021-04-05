@@ -1,6 +1,8 @@
+package com.group8.mancala.java;
+
 /**
  * Rules are used to check the validity of moves during a game, each action
- * is associated with a Rule (or sub-set of it).
+ * is associated with a com.group8.mancala.java.Rule (or sub-set of it).
  *
  * @author Genevieve Clifford
  * @version 1.0
