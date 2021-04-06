@@ -1,3 +1,5 @@
+package com.group8.mancala.java;
+
 /**
  * Session tracks the results of each player, it collaborates with game.
  *
