@@ -1,4 +1,4 @@
-package com.group8.mancala.java;
+package com.group8.mancala;
 
 public interface Hole {
     Player getAssignedPlayer();
