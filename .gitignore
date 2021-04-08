@@ -1,8 +1,8 @@
 *.class
-dist/
-build/
+target/
 doc/
 /bin/
 .classpath
 .idea/
 *.iml
+.project
