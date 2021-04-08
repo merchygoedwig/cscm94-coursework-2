@@ -1,6 +1,5 @@
 *.class
-dist/
-build/
+target/
 doc/
 /bin/
 .classpath

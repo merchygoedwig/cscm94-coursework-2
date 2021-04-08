@@ -1,4 +1,4 @@
-package com.group8.mancala.java;
+package com.group8.mancala;
 
 /**
  * com.group8.mancala.java.HoleAction is an implementation of the com.group8.mancala.java.Rule class for interactions

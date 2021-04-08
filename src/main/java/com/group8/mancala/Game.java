@@ -1,4 +1,4 @@
-package com.group8.mancala.java;
+package com.group8.mancala;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

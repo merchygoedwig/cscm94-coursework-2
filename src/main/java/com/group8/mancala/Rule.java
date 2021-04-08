@@ -1,4 +1,4 @@
-package com.group8.mancala.java;
+package com.group8.mancala;
 
 /**
  * Rules are used to check the validity of moves during a game, each action

@@ -1,4 +1,4 @@
-package com.group8.mancala.java;
+package com.group8.mancala;
 
 /**
  * com.group8.mancala.java.MoveCounter extends the com.group8.mancala.java.HoleAction abstract class and implements
