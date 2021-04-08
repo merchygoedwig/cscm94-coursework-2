@@ -1,3 +1,9 @@
+package com.group8.mancala.rule;
+
+/**
+ * Rules are used to check the validity of moves during a game, each action
+ * is associated with a com.group8.mancala.Rule.Rule (or sub-set of it).
+=======
 package com.group8.mancala;
 
 /**
@@ -10,6 +16,7 @@ package com.group8.mancala;
 public interface Rule {
     /**
      * Checks for if a rule is violated by a move or not
+     *
      * @return Boolean representation of the validity of a given rule given
      * the instance's originator and target values.
      */
