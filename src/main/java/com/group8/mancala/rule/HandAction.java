@@ -1,4 +1,4 @@
-package com.group8.mancala.java.rule;
+package com.group8.mancala.rule;
 
 import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.gameplayobjects.Mancala;
