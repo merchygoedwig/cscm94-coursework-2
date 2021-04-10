@@ -1,7 +1,6 @@
 package com.group8.mancala.rule;
 
 import com.group8.mancala.gameplayobjects.Hole;
-import com.group8.mancala.gameplayobjects.Mancala;
 import com.group8.mancala.playerfacing.Player;
 
 /**

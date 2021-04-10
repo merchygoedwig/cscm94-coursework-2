@@ -1,5 +1,7 @@
 package com.group8.mancala;
 
+import com.group8.mancala.playerfacing.Player;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -8,18 +10,22 @@ import java.util.LinkedList;
  * can only be one type of com.group8.mancala.java.Game at any one time.
  *
  * @author Genevieve Clifford
- * @version 1.0
+ * @version 1.1
  */
 public class Game {
-    private ArrayList<Player> playersInGame;
-    private Session currentSession;
+    final private ArrayList<Player> playersInGame;
+    final private Session currentSession;
     private int turnCount;
-    private LinkedList<Hole> gameHoles;
+    final private GameBoard mancalaBoard;
 
     /**
      * Creates instance of com.group8.mancala.java.Game, add players with setPlayersInGame()...
      */
-    public Game() {}
+    public Game(ArrayList<Player> assignedPlayers, Session thisSession, GameBoard thisGameBoard) {
+        currentSession = thisSession;
+        playersInGame = assignedPlayers;
+        mancalaBoard = thisGameBoard;
+    }
 
     /**
      * Returns which players are "loaded" into the instance of com.group8.mancala.java.Game
@@ -27,16 +33,6 @@ public class Game {
      */
     public ArrayList<Player> getPlayersInGame() {
         return playersInGame;
-    }
-
-    /**
-     * Sets which players are to be "loaded" into the instance of com.group8.mancala.java.Game
-     * @param player1 The first player in com.group8.mancala.java.Game
-     * @param player2 The second player in com.group8.mancala.java.Game
-     */
-    public void setPlayersInGame(Player player1, Player player2) {
-        playersInGame.add(player1);
-        playersInGame.add(player2);
     }
 
     /**
