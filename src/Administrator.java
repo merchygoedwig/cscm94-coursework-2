@@ -49,11 +49,13 @@ public class Administrator {
 	 * 
 	 * assign a player's player statue be true;
 	 */
-   void assigned(Player p) {
+   void assign(Player p) {
     	    	   	
-       // p.setAssigned(true);
+       //p.setAssigned(true);
     }
   
+   
+   
    
     /*
      *   admin page controler temp design
@@ -106,7 +108,7 @@ public class Administrator {
     // alert.setContentText("are you sure to assign player: "+p.getName());     
      alert.showAndWait();
      if (alert.getResult().getText().equalsIgnoreCase("OK")) {
-          assigned(p);
+          assign(p);
           list.remove(p);
           players.remove(p);
           
