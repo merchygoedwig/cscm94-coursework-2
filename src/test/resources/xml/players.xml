@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<playerdirectory>
+    <player uuid="4876240e-bea5-4654-9188-cca48c0fc395">
+        <username>merchygoedwig</username>
+        <firstname>Genevieve</firstname>
+        <lastname>Clifford</lastname>
+        <lastlogin>10-04-2020 13:54:27</lastlogin>
+        <imagepath>/dir/images/4876240e-bea5-4654-9188-cca48c0fc395.png</imagepath>
+        <winpercentage>0.83</winpercentage>
+    </player>
+    <player uuid="aba1ca7d-17e3-4d82-ad22-a9964f411201">
+        <username>secondtechaj</username>
+        <firstname>Arnold</firstname>
+        <lastname>Rimmer</lastname>
+        <lastlogin>01-09-2188 00:32:01</lastlogin>
+        <imagepath>/dir/images/aba1ca7d-17e3-4d82-ad22-a9964f411201.png</imagepath>
+        <winpercentage>0.21</winpercentage>
+    </player>
+</playerdirectory>
