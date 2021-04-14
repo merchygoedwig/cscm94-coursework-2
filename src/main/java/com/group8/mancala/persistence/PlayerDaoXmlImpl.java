@@ -11,14 +11,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-public class PlayerXmlDomParser {
+public class PlayerDaoXmlImpl implements PlayerDao{
     final private Document document;
     final private NodeList players;
     final private SimpleDateFormat dateFormatter;
+    private ArrayList<Player> playerList;
 
-    public PlayerXmlDomParser(String filepath) throws ParserConfigurationException, IOException, SAXException {
+    public PlayerDaoXmlImpl(String filepath) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         File playerXML = new File(filepath);
@@ -49,7 +51,8 @@ public class PlayerXmlDomParser {
         for (i = 0; i < players.getLength(); i++) {
             Node player = players.item(i);
             Element ePlayer = (Element) player;
-            if (player.getNodeType() == Node.ELEMENT_NODE && _getXMLAttribute(ePlayer, "username").equals(un)) {
+            if (player.getNodeType() == Node.ELEMENT_NODE &&
+                    _getXMLAttribute(ePlayer, "username").equals(un)) {
                 return ePlayer;
             }
         }
@@ -73,14 +76,48 @@ public class PlayerXmlDomParser {
         return new Player(uuid, username, firstName, lastName, lastLogin, imagePath, winPercentage);
     }
 
-    public Player getPlayerByUUID(UUID uuid) throws ParseException {
+    @Override
+    public Player get(UUID uuid) throws ParseException {
         Element ePlayer = _getElementByUUID(uuid);
         return _createPlayerFromXML(ePlayer);
     }
 
-    public Player getPlayerByUsername(String un) throws ParseException {
+    @Override
+    public Player get(String un) throws ParseException {
         Element ePlayer = _getElementByUsername(un);
         return _createPlayerFromXML(ePlayer);
+    }
+
+
+    private ArrayList<Player> _getAll() throws ParseException {
+        playerList.clear();
+        int i;
+        for (i = 0; i < players.getLength(); i++) {
+            Node player = players.item(i);
+            Element ePlayer = (Element) player;
+            playerList.add(_createPlayerFromXML(ePlayer));
+        }
+        return playerList;
+    }
+
+    @Override
+    public List<Player> getAll() throws ParseException {
+        return _getAll();
+    }
+
+    @Override
+    public void save(Player player) {
+
+    }
+
+    @Override
+    public void update(Player player, String[] updates) {
+
+    }
+
+    @Override
+    public void delete(Player player) {
+
     }
 
 //    public void persistPlayerChanges(ArrayList<Player> players) {

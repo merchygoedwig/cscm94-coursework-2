@@ -1,7 +1,7 @@
 import com.group8.mancala.playerfacing.Player;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.group8.mancala.persistence.PlayerXmlDomParser;
+import static org.junit.jupiter.api.Assertions.*;
+import com.group8.mancala.persistence.PlayerDaoXmlImpl;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,12 +10,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
-public class PlayerXmlDomParserTest {
+public class PlayerDaoXmlImplTest {
 
     @Test
     void searchByUsername() throws IOException, SAXException, ParserConfigurationException, ParseException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        PlayerXmlDomParser testDOM = new PlayerXmlDomParser("src/test/resources/xml/players.xml");
+        PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
         UUID uuid = UUID.fromString("4876240e-bea5-4654-9188-cca48c0fc395");
         Player match = new Player(
                 uuid,
@@ -27,7 +27,7 @@ public class PlayerXmlDomParserTest {
                 (float) 0.83
         );
 
-        Player toMatch = testDOM.getPlayerByUsername("merchygoedwig");
+        Player toMatch = testDAO.get("merchygoedwig");
         assertEquals(match.getUuid(), toMatch.getUuid());
         assertEquals(match.getUsername(), toMatch.getUsername());
         assertEquals(match.getFirstName(), toMatch.getFirstName());
@@ -40,7 +40,7 @@ public class PlayerXmlDomParserTest {
     @Test
     void searchByUUID() throws IOException, SAXException, ParserConfigurationException, ParseException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        PlayerXmlDomParser testDOM = new PlayerXmlDomParser("src/test/resources/xml/players.xml");
+        PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
         UUID uuid = UUID.fromString("aba1ca7d-17e3-4d82-ad22-a9964f411201");
         Player match = new Player(
                 uuid,
@@ -52,7 +52,7 @@ public class PlayerXmlDomParserTest {
                 (float) 0.21
         );
 
-        Player toMatch = testDOM.getPlayerByUUID(uuid);
+        Player toMatch = testDAO.get(uuid);
         assertEquals(match.getUuid(), toMatch.getUuid());
         assertEquals(match.getUsername(), toMatch.getUsername());
         assertEquals(match.getFirstName(), toMatch.getFirstName());
@@ -60,5 +60,22 @@ public class PlayerXmlDomParserTest {
         assertEquals(match.getLastLogin(), toMatch.getLastLogin());
         assertEquals(match.getImagePath(), toMatch.getImagePath());
         assertEquals(match.getWinPercentage(), toMatch.getWinPercentage());
+    }
+
+    @Test
+    void getNonExistentPlayerByUsername() throws IOException, SAXException, ParserConfigurationException {
+        PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
+        assertThrows(ParseException.class, () -> {
+            testDAO.get("Ceci n'est pas une utilisateur");
+        });
+    }
+
+    @Test
+    void getNonExistentPlayerByUUID() throws IOException, SAXException, ParserConfigurationException {
+        PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
+        UUID uuid = UUID.fromString("716080d8-e7da-40e3-81f4-27c307093d36");
+        assertThrows(ParseException.class, () -> {
+            testDAO.get(uuid);
+        });
     }
 }
