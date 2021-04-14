@@ -11,21 +11,20 @@ import com.group8.mancala.playerfacing.Player;
 
 public interface Hole {
   public Player assignedPlayer;
-  public Stack<Counter> counters;
+  public Stack<Counter> counters = new Stack<>();
   int counterAmount;
-
 
   /**
    * Accepts new counters that are added to a Hole during the game.
    *
    * @param someCounter Counter thats has been moved from other Hole
-   */   
+   */
   private void acceptCounter(Counter someCounter) {
-    Counter counter= new Counter(someCounter);
+    Counter counter = new Counter(someCounter);
     counters.push(counter);
     counterAmount++;
   }
-  
+
   /**
    * Remove all counters from a hole.
    */
@@ -41,6 +40,7 @@ public interface Hole {
   public int getCounterCount() {
     return counterAmount;
   }
+
   /**
    * Method to return the current player that can play and move the counters from the current hole.
    *
@@ -50,5 +50,3 @@ public interface Hole {
     return assigned Player;   
   }
 }
-
-
