@@ -16,20 +16,20 @@ public class HoleUnitTest {
   private int counterAmount;
 	void createCounter() {
 		testHole.push(new Counter(1));
-		testHole.push(new Counter(2));
+		testHole.push(new Counter(1));
 		testHole.push(new Counter(1));
 		testHole.push(new Counter(1));
 		testHole.push(new Counter(1));
 	}
     Hole hole = new Hole();
-    
+	public void acceptCounter(Counter counter) {
+		counters.push(counter);
+	  }
 	@Test
 	public void acceptCounterTest(Counter someCounter) {
         Stack<Counter> counters = new Stack<>();
-        Counter counter = new Counter(someCounter);
 		for(Counter c : counters) {
-            counters.push(counter);
-            counterAmount++;	
+            counters.push(counter);	
 		}
 		//check output correctness
 		assertEquals();
