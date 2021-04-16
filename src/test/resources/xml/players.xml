@@ -15,4 +15,4 @@
         <imagepath>/dir/images/aba1ca7d-17e3-4d82-ad22-a9964f411201.png</imagepath>
         <winpercentage>0.21</winpercentage>
     </player>
-<player uuid="f7f23266-eae2-4f7d-8f52-b09d8b893b17"><username>testplayer</username><firstname>Test</firstname><lastname>Player</lastname><lastlogin>10-09-0017 12:43:12</lastlogin><imagepath>/some/image/path</imagepath><winpercentage>0.42</winpercentage></player></playerdirectory>
+</playerdirectory>
