@@ -1,4 +1,6 @@
-package com.group8.mancala.java;
+package com.group8.mancala;
+
+import com.group8.mancala.gameplayobjects.Hole;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
