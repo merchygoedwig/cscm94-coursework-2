@@ -3,20 +3,20 @@ package com.group8.mancala.playerfacing;
 import java.util.Date;
 import java.util.UUID;
 
-public class Player {
+public class Player implements Comparable<Player> {
     private UUID uuid;
     private String username;
     private String firstName;
     private String lastName;
     private Date lastLogin;
     private String imagePath;
-    private float winPercentage;
+    private Double winPercentage;
 
     public Player() {
 
     }
 
-    public Player(String un, String fn, String ln, Date ll, String ip, float wp) {
+    public Player(String un, String fn, String ln, Date ll, String ip, Double wp) {
         uuid = UUID.randomUUID();
         username = un;
         firstName = fn;
@@ -27,7 +27,7 @@ public class Player {
 
     }
 
-    public Player(UUID uu, String un, String fn, String ln, Date ll, String ip, float wp) {
+    public Player(UUID uu, String un, String fn, String ln, Date ll, String ip, Double wp) {
         uuid = uu;
         username = un;
         firstName = fn;
@@ -86,11 +86,16 @@ public class Player {
         this.imagePath = imagePath;
     }
 
-    public float getWinPercentage() {
+    public Double getWinPercentage() {
         return winPercentage;
     }
 
-    public void setWinPercentage(float winPercentage) {
+    public void setWinPercentage(Double winPercentage) {
         this.winPercentage = winPercentage;
+    }
+
+    @Override
+    public int compareTo(Player player) {
+        return getWinPercentage().compareTo(player.getWinPercentage());
     }
 }

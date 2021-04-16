@@ -5,15 +5,18 @@ import com.group8.mancala.persistence.PlayerDaoXmlImpl;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 public class PlayerDaoXmlImplTest {
 
     @Test
-    void searchByUsername() throws IOException, SAXException, ParserConfigurationException, ParseException {
+    void searchByUsername() throws IOException, SAXException, ParserConfigurationException, ParseException, TransformerConfigurationException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
         UUID uuid = UUID.fromString("4876240e-bea5-4654-9188-cca48c0fc395");
@@ -24,7 +27,7 @@ public class PlayerDaoXmlImplTest {
                 "Clifford",
                 dateFormatter.parse("10-04-2020 13:54:27"),
                 "/dir/images/4876240e-bea5-4654-9188-cca48c0fc395.png",
-                (float) 0.83
+                0.83
         );
 
         Player toMatch = testDAO.get("merchygoedwig");
@@ -38,7 +41,7 @@ public class PlayerDaoXmlImplTest {
     }
 
     @Test
-    void searchByUUID() throws IOException, SAXException, ParserConfigurationException, ParseException {
+    void searchByUUID() throws IOException, SAXException, ParserConfigurationException, ParseException, TransformerConfigurationException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
         UUID uuid = UUID.fromString("aba1ca7d-17e3-4d82-ad22-a9964f411201");
@@ -49,7 +52,7 @@ public class PlayerDaoXmlImplTest {
                 "Rimmer",
                 dateFormatter.parse("01-09-2188 00:32:01"),
                 "/dir/images/aba1ca7d-17e3-4d82-ad22-a9964f411201.png",
-                (float) 0.21
+                0.21
         );
 
         Player toMatch = testDAO.get(uuid);
@@ -63,7 +66,7 @@ public class PlayerDaoXmlImplTest {
     }
 
     @Test
-    void getNonExistentPlayerByUsername() throws IOException, SAXException, ParserConfigurationException {
+    void getNonExistentPlayerByUsername() throws IOException, SAXException, ParserConfigurationException, TransformerConfigurationException {
         PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
         assertThrows(ParseException.class, () -> {
             testDAO.get("Ceci n'est pas une utilisateur");
@@ -71,11 +74,27 @@ public class PlayerDaoXmlImplTest {
     }
 
     @Test
-    void getNonExistentPlayerByUUID() throws IOException, SAXException, ParserConfigurationException {
+    void getNonExistentPlayerByUUID() throws IOException, SAXException, ParserConfigurationException, TransformerConfigurationException {
         PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
         UUID uuid = UUID.fromString("716080d8-e7da-40e3-81f4-27c307093d36");
         assertThrows(ParseException.class, () -> {
             testDAO.get(uuid);
         });
+    }
+
+    @Test
+    void createANewPlayerAndPersistThemToXMLFile() throws ParserConfigurationException, SAXException, TransformerException, IOException, ParseException {
+        PlayerDaoXmlImpl testDAO = new PlayerDaoXmlImpl("src/test/resources/xml/players.xml");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date ll = dateFormatter.parse("2020-03-12 12:43:12");
+        Player newPlayer = new Player(
+                "testplayer",
+                "Test",
+                "Player",
+                ll,
+                "/some/image/path",
+                0.42
+        );
+        testDAO.save(newPlayer);
     }
 }
