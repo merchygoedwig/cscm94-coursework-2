@@ -1,4 +1,4 @@
-CSCM94 Mancala Project
+CSCM94 com.group8.mancala.gameplayobjects.Mancala Project
 ======================
 
 Coursework 2 - Group 8 - 2020/21
