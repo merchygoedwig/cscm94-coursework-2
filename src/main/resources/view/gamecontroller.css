@@ -1,0 +1,23 @@
+BorderPane{
+    -fx-background-image: url('./wood_background.jpg');
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#player1{
+    -fx-background-color: rgba(0,0,75,0.5);
+}
+
+#player2{
+    -fx-background-color: rgba(75,0,0,0.5);
+}
+
+#almost_no_background{
+    -fx-background-color: rgba(255,255,255,0.75);
+}
+
+#playeravi{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}

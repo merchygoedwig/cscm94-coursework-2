@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 
-public class MainController {
+public class AdministratorStubController {
     Player player1;
     Player player2;
 
@@ -90,8 +91,8 @@ public class MainController {
             }
             return null;
         });
-        AnchorPane anchorPane = loader.<AnchorPane>load();
-        Scene scene = new Scene(anchorPane);
+        Pane pane = loader.<AnchorPane>load();
+        Scene scene = new Scene(pane);
         loadedStage.setTitle("Mancala Game");
         loadedStage.setScene(scene);
         loadedStage.show();
