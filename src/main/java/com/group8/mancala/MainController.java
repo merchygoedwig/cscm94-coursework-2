@@ -7,18 +7,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Date;
 
-public class AdministratorStubController {
+public class MainController {
+
     Player player1;
     Player player2;
 
@@ -46,12 +44,12 @@ public class AdministratorStubController {
 
     public void initialize() throws FileNotFoundException {
         Player jermasus = new Player(
-          "whenTheImposterIsSus",
-          "Jerma",
-          "985",
-          new Date(),
-          "src/main/resources/view/JermaSus.jpg",
-          0.922
+                "whenTheImposterIsSus",
+                "Jerma",
+                "985",
+                new Date(),
+                "src/main/resources/view/JermaSus.jpg",
+                0.922
         );
 
         Player otherjerma = new Player(
@@ -79,27 +77,26 @@ public class AdministratorStubController {
         P2W.setText(String.valueOf(otherjerma.getWinPercentage()));
     }
 
-    @FXML
-    public void startGame(Stage loadedStage, Player p1, Player p2) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new URL("file:src/main/resources/view/game.fxml"));
-        loader.setControllerFactory(c -> {
-            try {
-                return new GameController(p1, p2);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-        Pane pane = loader.<AnchorPane>load();
-        Scene scene = new Scene(pane);
-        loadedStage.setTitle("Mancala Game");
-        loadedStage.setScene(scene);
-        loadedStage.show();
+    public Stage startGame(Player p1, Player p2) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "/view/game.fxml"
+                )
+        );
+
+        Stage stage = Main.getMainStage();
+        stage.setScene(
+                new Scene(loader.load())
+        );
+
+        GameController controller = loader.getController();
+        controller.initData(p1, p2); // to implement!!
+        stage.show();
+
+        return stage;
     }
 
     public void clickStartGame(ActionEvent actionEvent) throws IOException {
-        startGame(new Stage(), player1, player2);
+        startGame(player1, player2);
     }
 }
-

@@ -25,7 +25,7 @@
                <children>
                   <Text fx:id="p2mancala_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Comfortaa Regular" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -42,7 +42,7 @@
                <children>
                   <Text fx:id="p1mancala_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Comfortaa Regular" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -65,7 +65,7 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Comfortaa Regular" size="20.0" />
                      </font>
                   </Text>
                   <Text fx:id="PLAYER_TWO_UN" fill="#4b0000" strokeType="OUTSIDE" strokeWidth="0.0" text="player_two_username" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
@@ -73,18 +73,24 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Comfortaa Regular" size="20.0" />
                      </font>
                   </Text>
                   <Text fx:id="PLAYER_ONE_NA" fill="#00004b" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_name" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
                   </Text>
                   <Text fx:id="PLAYER_TWO_NA" fill="#4b0000" strokeType="OUTSIDE" strokeWidth="0.0" text="player_two_name" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
                   </Text>
                </children>
             </GridPane>
@@ -107,32 +113,32 @@
                      <children>
                         <Text fx:id="p2h6_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p2h5_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p2h4_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p2h3_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p2h2_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p2h1_text" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                      </children>
@@ -152,32 +158,32 @@
                      <children>
                         <Text fx:id="p1h1_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p1h2_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p1h3_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p1h4_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p1h5_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                         <Text fx:id="p1h6_text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Comfortaa Regular" size="20.0" />
                            </font>
                         </Text>
                      </children>

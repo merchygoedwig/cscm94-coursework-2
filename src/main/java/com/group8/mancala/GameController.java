@@ -1,6 +1,8 @@
 package com.group8.mancala;
 
+import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.playerfacing.Player;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,68 +10,102 @@ import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameController {
-    private final String player_one_username;
-    private final String player_two_username;
-    private final String player_one_name;
-    private final String player_two_name;
-    private final Image p1i;
-    private final Image p2i;
+    public Player player1;
+    public Player player2;
 
+    public Hole[] p1h;
+    public Hole[] p2h;
 
     @FXML
-    private Text PLAYER_ONE_UN;
+    public Text PLAYER_ONE_UN;
 
     @FXML
-    private Text PLAYER_TWO_UN;
+    public Text PLAYER_TWO_UN;
 
     @FXML
-    private Text PLAYER_ONE_NA;
+    public Text PLAYER_ONE_NA;
 
     @FXML
-    private Text PLAYER_TWO_NA;
+    public Text PLAYER_TWO_NA;
 
     @FXML
-    private ImageView PLAYER_ONE_AVI;
+    public ImageView PLAYER_ONE_AVI;
 
     @FXML
-    private ImageView PLAYER_TWO_AVI;
+    public ImageView PLAYER_TWO_AVI;
 
     @FXML
-    private Text p2h6_text;
+    public Text p1h6_text;
     @FXML
-    private Text p2h5_text;
+    public Text p1h5_text;
     @FXML
-    private Text p2h4_text;
+    public Text p1h4_text;
     @FXML
-    private Text p2h3_text;
+    public Text p1h3_text;
     @FXML
-    private Text p2h2_text;
+    public Text p1h2_text;
     @FXML
-    private Text p2h1_text;
+    public Text p1h1_text;
 
-    private Text[] p2holes;
+    @FXML
+    public Text p2h6_text;
+    @FXML
+    public Text p2h5_text;
+    @FXML
+    public Text p2h4_text;
+    @FXML
+    public Text p2h3_text;
+    @FXML
+    public Text p2h2_text;
+    @FXML
+    public Text p2h1_text;
 
-    public GameController(Player p1, Player p2) throws FileNotFoundException {
-        player_one_username = p1.getUsername();
-        player_one_name = p1.getFirstName() + " " + p1.getLastName();
-        player_two_name = p2.getFirstName() + " " + p2.getLastName();
-        player_two_username = p2.getUsername();
-        p1i = new Image(new FileInputStream(p1.getImagePath()));
-        p2i = new Image(new FileInputStream(p2.getImagePath()));
-        p2holes = new Text[]{p2h6_text, p2h5_text, p2h4_text, p2h3_text, p2h2_text, p2h1_text};
-    }
+    public GameController() {}
 
-    // called by the FXML loader after the labels declared above are injected:
-    public void initialize() {
-        PLAYER_ONE_UN.setText(player_one_username);
-        PLAYER_TWO_UN.setText(player_two_username);
-        PLAYER_ONE_NA.setText(player_one_name);
-        PLAYER_TWO_NA.setText(player_two_name);
+    public void initData(Player p1, Player p2) throws FileNotFoundException {
+        player1 = p1;
+        player2 = p2;
+
+        PLAYER_ONE_UN.setText(player1.getUsername());
+        PLAYER_TWO_UN.setText(player2.getUsername());
+        PLAYER_ONE_NA.setText(player1.getFirstName() + " " + player1.getLastName());
+        PLAYER_TWO_NA.setText(player2.getFirstName() + " " + player2.getLastName());
+        Image p1i = new Image(new FileInputStream(player1.getImagePath()));
+        Image p2i = new Image(new FileInputStream(player2.getImagePath()));
         PLAYER_ONE_AVI.setImage(p1i);
         PLAYER_TWO_AVI.setImage(p2i);
+
+        Text [] p1htext = new Text[]{p1h1_text, p1h2_text, p1h3_text, p1h4_text, p1h5_text, p1h6_text};
+
+
+        p1h = new Hole[p1htext.length];
+
+        for (int i = 0; i < p1htext.length; i++) {
+            p1h[i] = new Hole(player1, p1htext[i]);
+        }
+
+        for (Hole p1holes : p1h) {
+            p1holes.updateLabel();
+        }
+
+        Text [] p2htext = new Text[]{p2h1_text, p2h2_text, p2h3_text, p2h4_text, p2h5_text, p2h6_text};
+        
+
+        p2h = new Hole[p2htext.length];
+
+        for (int i = 0; i < p2htext.length; i++) {
+            p2h[i] = new Hole(player2, p2htext[i]);
+        }
+
+        for (Hole p2holes : p2h) {
+            p2holes.updateLabel();
+        }
+
+    }
+
+    public void beginGame(ActionEvent actionEvent) {
+//        p2h1.updateLabel();
     }
 }

@@ -7,21 +7,27 @@ package com.group8.mancala.gameplayobjects;
 
 import java.util.*;
 import com.group8.mancala.playerfacing.Player;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 
 public class Hole {
   private Player assignedPlayer;
   private Stack<Counter> counters;
-  int counterAmount;
+
+  private Text counterDisplay;
 
   /**
    * Constructor.
    *
-   * @param initialAmount initial number of counters in a hole
-   * @return Hole for which we set initial amount of counters
    */
-  public Hole(int initialAmount) {
-    counterAmount = initialAmount;
+  public Hole(Player playerToAssign, Text displayCounter) {
+    counterDisplay = displayCounter;
+    assignedPlayer = playerToAssign;
+    counters = new Stack<Counter>();
+    for (int i = 0; i < 4; i++) {
+      counters.push(new Counter());
+    }
   }
 
   /**
@@ -30,16 +36,14 @@ public class Hole {
    * @param someCounter Counter thats has been moved from other Hole
    */   
   private void acceptCounter(Counter someCounter) {
-    Counter counter= new Counter();
-    counters.push(counter);
-    counterAmount++;
+    counters.push(someCounter);
   }
   
   /**
    * Remove all counters from a hole.
    */
-  private void giveUpCounter() {
-    counterAmount = 0;
+  private Counter giveUpCounter() {
+    return counters.pop();
   }
 
   /**
@@ -48,8 +52,18 @@ public class Hole {
    * @return An int representing the number of counters in a hole.
    */
   public int getCounterCount() {
-    return counterAmount;
+    return counters.size();
   }
+
+  public void updateLabel(String someText) {
+    counterDisplay.setText(someText);
+  }
+
+  public void updateLabel() {
+    String counterString = String.valueOf(getCounterCount());
+    counterDisplay.setText(counterString);
+  }
+
   /**
    * Method to return the current player that can play and move the counters from the current hole.
    *
