@@ -1,7 +1,11 @@
 package com.group8.mancala;
 import com.group8.mancala.playerfacing.Player;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.text.ParseException;
 
 import java.util.ArrayList;
@@ -14,21 +18,44 @@ import java.util.ArrayList;
  * @version 1.1
  */
 public class Game {
-    private ArrayList<Player> playersInGame;
-    final private Session currentSession;
     private int turnCount;
+    private Player player1;
+    private Player player2;
+    private TurnKnower tk;
 
     /**
      * Creates instance of com.group8.mancala.java.Game, add players with setPlayersInGame()...
      */
-    public Game(ArrayList<Player> assignedPlayers, Session thisSession) {
-        currentSession = thisSession;
-        playersInGame = assignedPlayers;
+    public Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.tk = new TurnKnower(this.player1, this.player2);
     }
 
-    public ArrayList<Player> start() {
-        // actual game logic goes here
-        return playersInGame;
+    class TurnKnower {
+        private Player p1;
+        private Player p2;
+        private Player turnHaver;
+
+        public TurnKnower(Player p1, Player p2) {
+            this.p1 = p1;
+            this.p2 = p2;
+
+            this.turnHaver = p1;
+        }
+
+        public Player getTurnHaver() {
+            return turnHaver;
+        }
+
+        public Player nextTurn() {
+            if (turnHaver == p1) {
+                turnHaver = p2;
+            } else {
+                turnHaver = p1;
+            }
+            return getTurnHaver();
+        }
     }
 
     /**
@@ -36,11 +63,11 @@ public class Game {
      * @return ArrayList of Players in the game
      */
     public ArrayList<Player> getPlayersInGame() {
-        return playersInGame;
-    }
+        ArrayList<Player> playerList = new ArrayList<>();
+        playerList.add(player1);
+        playerList.add(player2);
 
-    public void setPlayersInGame(ArrayList<Player> players) {
-        playersInGame = players;
+        return playerList;
     }
 
     /**
@@ -50,10 +77,29 @@ public class Game {
         turnCount++;
     }
 
-    public void end() throws TransformerException, ParseException {
-        // here will be code for closing GUI windows etc.
-        for (Player player : playersInGame) {
-            currentSession.dao.save(player);
-        }
+//    public void end() throws TransformerException, ParseException {
+//        // here will be code for closing GUI windows etc.
+//        for (Player player : playersInGame) {
+//            currentSession.dao.save(player);
+//        }
+//    }
+
+    public Stage startGame() throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "/view/game.fxml"
+                )
+        );
+
+        Stage stage = Main.getMainStage();
+        stage.setScene(
+                new Scene(loader.load())
+        );
+
+        GameController controller = loader.getController();
+        controller.initData(player1, player2);
+        stage.show();
+
+        return stage;
     }
 }

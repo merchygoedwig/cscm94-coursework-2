@@ -7,6 +7,9 @@ package com.group8.mancala.gameplayobjects;
 
 import java.util.*;
 import com.group8.mancala.playerfacing.Player;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
@@ -15,19 +18,32 @@ public class Hole {
   private Player assignedPlayer;
   private Stack<Counter> counters;
 
+  private Button selectHole;
   private Text counterDisplay;
 
   /**
    * Constructor.
    *
    */
-  public Hole(Player playerToAssign, Text displayCounter) {
+  public Hole(Player playerToAssign, Text displayCounter, Button button) {
+    selectHole = button;
     counterDisplay = displayCounter;
     assignedPlayer = playerToAssign;
     counters = new Stack<Counter>();
     for (int i = 0; i < 4; i++) {
       counters.push(new Counter());
     }
+
+    button.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent actionEvent) {
+        updateLabel("hi");
+      }
+    });
+  }
+
+  public Hole() {
+
   }
 
   /**

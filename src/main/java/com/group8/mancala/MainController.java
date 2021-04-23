@@ -77,26 +77,8 @@ public class MainController {
         P2W.setText(String.valueOf(otherjerma.getWinPercentage()));
     }
 
-    public Stage startGame(Player p1, Player p2) throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        "/view/game.fxml"
-                )
-        );
-
-        Stage stage = Main.getMainStage();
-        stage.setScene(
-                new Scene(loader.load())
-        );
-
-        GameController controller = loader.getController();
-        controller.initData(p1, p2); // to implement!!
-        stage.show();
-
-        return stage;
-    }
-
     public void clickStartGame(ActionEvent actionEvent) throws IOException {
-        startGame(player1, player2);
+        Main.setCurrentGame(new Game(player1, player2));
+        Main.getCurrentGame().startGame();
     }
 }

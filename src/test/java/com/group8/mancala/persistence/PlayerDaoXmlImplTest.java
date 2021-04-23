@@ -1,7 +1,8 @@
+package com.group8.mancala.persistence;
+
 import com.group8.mancala.playerfacing.Player;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import com.group8.mancala.persistence.PlayerDaoXmlImpl;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

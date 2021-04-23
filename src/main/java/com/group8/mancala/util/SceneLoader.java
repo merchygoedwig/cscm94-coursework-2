@@ -1,5 +1,6 @@
-package com.group8.mancala;
+package com.group8.mancala.util;
 
+import com.group8.mancala.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
