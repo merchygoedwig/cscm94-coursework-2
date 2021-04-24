@@ -204,6 +204,43 @@
                </children>
             </VBox>
          </center>
+         <bottom>
+            <GridPane id="almost_no_background" prefHeight="29.0" prefWidth="641.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="48.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="7.0" prefWidth="38.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="43.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="414.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player">
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="player_one_indicator" fill="#00004b" strokeType="OUTSIDE" strokeWidth="0.0" text="ONE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="player_two_indicator" fill="#4b0000" strokeType="OUTSIDE" strokeWidth="0.0" text="TWO" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="it's your time to shine!" wrappingWidth="155.04296875" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
+                  </Text>
+                  <Button mnemonicParsing="false" onAction="#clickNextTurn" text="Next Turn" GridPane.columnIndex="4" />
+               </children>
+            </GridPane>
+         </bottom>
       </BorderPane>
    </children>
 </Pane>

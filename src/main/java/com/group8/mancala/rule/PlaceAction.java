@@ -24,6 +24,10 @@ public class PlaceAction extends HandAction {
         super(player, hole);
     }
 
+    public PlaceAction(Player player) {
+        super(player);
+    }
+
     /**
      * A counter cannot be placed into a hole if both: the hole is a Mancala AND
      * the Hole "belongs" to the opponent. Every other case is allowable. Here

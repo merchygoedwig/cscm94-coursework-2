@@ -11,6 +11,7 @@ public class Player implements Comparable<Player> {
     private Date lastLogin;
     private String imagePath;
     private Double winPercentage;
+    private Hand hand;
 
     public Player() {
 
@@ -97,5 +98,13 @@ public class Player implements Comparable<Player> {
     @Override
     public int compareTo(Player player) {
         return getWinPercentage().compareTo(player.getWinPercentage());
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
     }
 }

@@ -6,18 +6,18 @@ Defines a class, Hole, to store information about a single hole and counters it 
 package com.group8.mancala.gameplayobjects;
 
 import java.util.*;
+
+import com.group8.mancala.playerfacing.Hand;
 import com.group8.mancala.playerfacing.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 
 public class Hole {
   private Player assignedPlayer;
   private Stack<Counter> counters;
-
   private Button selectHole;
   private Text counterDisplay;
 
@@ -37,13 +37,21 @@ public class Hole {
     button.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent actionEvent) {
-        updateLabel("hi");
+        giveAllCountersToHand();
       }
     });
   }
 
   public Hole() {
 
+  }
+
+  public Button getSelectHole() {
+    return selectHole;
+  }
+
+  public void setSelectHole(Button selectHole) {
+    this.selectHole = selectHole;
   }
 
   /**
@@ -56,10 +64,18 @@ public class Hole {
   }
   
   /**
-   * Remove all counters from a hole.
+   * Remove a counter from a hole.
    */
-  private Counter giveUpCounter() {
+  public Counter giveUpCounter() {
     return counters.pop();
+  }
+
+  public void giveAllCountersToHand() {
+    Hand hand = assignedPlayer.getHand();
+    while (!counters.empty()) {
+      hand.acceptCounterIntoHand(counters.pop());
+      this.updateLabel();
+    }
   }
 
   /**
