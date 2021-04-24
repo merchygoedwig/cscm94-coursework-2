@@ -17,6 +17,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * An implementation of the PlayerDao interface which makes use of an XML file for the "backend". Here we use a DOM
+ * parser for the XML file. Due to the relatively small number of unique players which is expected for version 1.0, a
+ * DOM parser makes sense to implement here. If the game were to be played by many tens or hundreds of players, it
+ * would be more memory efficient to use a SAX parser for the DAO. Obviously it would be even better to use say, a
+ * SQL (SQLite) database for persistence and serialisation, but this complies with the specification.
+ * @author Genevieve Clifford
+ * @version InDev
+ */
 public class PlayerDaoXmlImpl implements PlayerDao{
     final private Document document;
     final private NodeList players;
@@ -26,7 +35,8 @@ public class PlayerDaoXmlImpl implements PlayerDao{
     private Transformer transformer;
     private String fp;
 
-    public PlayerDaoXmlImpl(String filepath) throws ParserConfigurationException, IOException, SAXException, TransformerConfigurationException {
+    public PlayerDaoXmlImpl(String filepath) throws ParserConfigurationException, IOException, SAXException,
+            TransformerConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         File playerXML = new File(filepath);

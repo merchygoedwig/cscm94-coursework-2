@@ -2,6 +2,11 @@ package com.group8.mancala.util;
 
 import com.group8.mancala.gameplayobjects.Hole;
 
+/**
+ * Linked List implementation that allows all of the holes in the Mancala game to be accessed sequentially
+ * @author Genevieve Clifford
+ * @version InDev
+ */
 public class HoleLinkedList {
     private HoleContainer head = null;
     private HoleContainer tail = null;

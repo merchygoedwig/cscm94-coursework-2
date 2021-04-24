@@ -16,6 +16,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * JavaFX controller which interfaces with both the underlying Game class, and also the FXML described view, giving a
+ * complete MVC hat-trick. Only used with the singleton instance of Game (Main.Game).
+ */
 public class GameController {
 
     public Player player1;
@@ -23,8 +27,8 @@ public class GameController {
 
     public Hole[] p1h;
     public Hole[] p2h;
-    public Mancala p1m;
-    public Mancala p2m;
+//    public Mancala p1m;
+//    public Mancala p2m;
 
     private final Game game;
 
@@ -103,10 +107,20 @@ public class GameController {
     @FXML
     Button p2h6_sel;
 
+    /**
+     * Constructor for GameController only sets the singleton class for the local variable `game`
+     */
     public GameController() {
         this.game = Main.getCurrentGame();
     }
 
+    /**
+     * Sets data up for the GameController instance, this is called from the Main/Administrator etc. class just after
+     * the instance of GameController has been initiated.
+     * @param p1 player one in the game
+     * @param p2 player two in the game
+     * @throws FileNotFoundException thrown when image files are not found
+     */
     public void initData(Player p1, Player p2) throws FileNotFoundException {
         // Declaring instance variables for player from constructor
         player1 = p1;
@@ -149,10 +163,14 @@ public class GameController {
             ptr = ptr.getNextContainer();
         }
 
-        // Testing out hide functionality
+        // Hides control elements for player two initially
         Main.getCurrentGame().hide();
     }
 
+    /**
+     * Hides control elements for the player who their turn is not the current one
+     * @param tk singleton class of TurnKnower from the singleton instance of Game
+     */
     public void hideAssetsFromOtherPlayer(Game.TurnKnower tk) {
         Player player = tk.getOtherPlayer();
 
@@ -179,6 +197,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Used for testing only, skips turn for the current player
+     * @param actionEvent
+     * @throws IOException
+     */
     public void clickNextTurn(ActionEvent actionEvent) throws IOException {
         game.getTk().nextTurn();
     }

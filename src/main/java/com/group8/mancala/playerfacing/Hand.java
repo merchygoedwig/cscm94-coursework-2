@@ -5,6 +5,7 @@ import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.rule.DrawAction;
 import com.group8.mancala.rule.InventoryAction;
 import com.group8.mancala.rule.PlaceAction;
+import com.group8.mancala.util.HoleContainer;
 
 import java.util.Stack;
 
@@ -41,5 +42,13 @@ public class Hand {
 
     public void acceptCounterIntoHand(Counter c) {
         countersInHand.push(c);
+    }
+
+    public void distributeCounters(HoleContainer root) {
+        HoleContainer curPtr = root;
+
+        while (!countersInHand.empty()) {
+            curPtr = curPtr.getNextContainer();
+        }
     }
 }

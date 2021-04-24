@@ -1,8 +1,3 @@
-/**
-FILENAME: Hole.java 
-Defines a class, Hole, to store information about a single hole and counters it contains.
-@author Paulina Mielewska
-*/
 package com.group8.mancala.gameplayobjects;
 
 import java.util.*;
@@ -14,7 +9,12 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
-
+/**
+ * FILENAME: Hole.java
+ * Defines a class, Hole, to store information about a single hole and counters it contains.
+ * @author Paulina Mielewska and Genevieve Clifford
+ * @version InDev
+ */
 public class Hole {
   private Player assignedPlayer;
   private Stack<Counter> counters;

@@ -6,6 +6,11 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 
+/**
+ * Utility function to make loading scenes for the main stage much much easier
+ * @author Genevieve Clifford
+ * @version InDev
+ */
 public class SceneLoader {
     private final String filepath;
 

@@ -23,15 +23,25 @@ public class Game {
     private Player winner;
     private Player loser;
 
+    private GameType gt;
+
     private TurnKnower tk;
     private GameController gc;
+
+    enum GameType {
+        TRADITIONAL,
+        ARCADE
+    }
 
     /**
      * Creates instance of Game, used when you want to start a game from Main, Administrator...
      */
-    public Game(Player player1, Player player2) {
+    public Game(Player player1, Player player2, GameType gt) {
         this.player1 = player1;
         this.player2 = player2;
+
+        this.gt = gt;
+
         this.tk = new TurnKnower(this.player1, this.player2);
         player1.setHand(new Hand(player1));
         player2.setHand(new Hand(player2));

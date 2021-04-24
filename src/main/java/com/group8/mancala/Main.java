@@ -30,6 +30,7 @@ public class Main extends Application {
         new SceneLoader("/view/testmain.fxml").load();
 
         mainStage.show();
+        mainStage.setTitle("Untitled Mancala Game");
     }
 
     public static Stage getMainStage() {

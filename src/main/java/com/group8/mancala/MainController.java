@@ -83,7 +83,7 @@ public class MainController {
     }
 
     public void clickStartGame(ActionEvent actionEvent) throws IOException {
-        Main.setCurrentGame(new Game(player1, player2));
+        Main.setCurrentGame(new Game(player1, player2, Game.GameType.TRADITIONAL));
         Main.getCurrentGame().startGame();
     }
 }
