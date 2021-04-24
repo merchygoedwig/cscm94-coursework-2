@@ -237,7 +237,8 @@
                         <Font name="Comfortaa Regular" size="13.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#clickNextTurn" text="Next Turn" GridPane.columnIndex="4" />
+                  <Button minWidth="0.0" mnemonicParsing="false" onAction="#clickNextTurn" text="Next Turn" GridPane.columnIndex="4" />
+                  <Button fx:id="blank_button" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="Button" GridPane.columnIndex="4" />
                </children>
             </GridPane>
          </bottom>

@@ -2,8 +2,12 @@ package com.group8.mancala.gameplayobjects;
 
 import java.util.*;
 
+import com.group8.mancala.Game;
+import com.group8.mancala.Main;
 import com.group8.mancala.playerfacing.Hand;
 import com.group8.mancala.playerfacing.Player;
+import com.group8.mancala.util.HoleContainer;
+import com.group8.mancala.util.HoleLinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -20,18 +24,54 @@ public class Hole {
   private Stack<Counter> counters;
   private Button selectHole;
   private Text counterDisplay;
+  private HoleType hType;
+  private Game.TurnKnower tk;
+
+  public enum HoleType {
+    HOLE,
+    MANCALA
+  }
+
+  public HoleType gethType() {
+    return hType;
+  }
+
+  public HoleLinkedList getHll() {
+    return hll;
+  }
+
+  public void setHll(HoleLinkedList hll) {
+    this.hll = hll;
+  }
+
+  private HoleLinkedList hll;
+  private HoleContainer situatedContainer;
+
+
+  public HoleContainer getSituatedContainer() {
+    return situatedContainer;
+  }
+
+  public void setSituatedContainer(HoleContainer situatedContainer) {
+    this.situatedContainer = situatedContainer;
+  }
 
   /**
    * Constructor.
    *
    */
-  public Hole(Player playerToAssign, Text displayCounter, Button button) {
+  public Hole(Player playerToAssign, Text displayCounter, Button button, HoleType ht) {
     selectHole = button;
     counterDisplay = displayCounter;
     assignedPlayer = playerToAssign;
     counters = new Stack<Counter>();
-    for (int i = 0; i < 4; i++) {
-      counters.push(new Counter());
+    this.hType = ht;
+    this.tk = Main.getCurrentGame().getTk();
+
+    if (hType == HoleType.HOLE) {
+      for (int i = 0; i < 4; i++) {
+        counters.push(new Counter());
+      }
     }
 
     button.setOnAction(new EventHandler<ActionEvent>() {
@@ -59,8 +99,9 @@ public class Hole {
    *
    * @param someCounter Counter thats has been moved from other Hole
    */   
-  private void acceptCounter(Counter someCounter) {
+  public void acceptCounter(Counter someCounter) {
     counters.push(someCounter);
+    updateLabelAndButtonVisibility();
   }
   
   /**
@@ -74,8 +115,10 @@ public class Hole {
     Hand hand = assignedPlayer.getHand();
     while (!counters.empty()) {
       hand.acceptCounterIntoHand(counters.pop());
-      this.updateLabel();
+      this.updateLabelAndButtonVisibility();
     }
+    hand.distributeCounters(this);
+    this.updateLabelAndButtonVisibility();
   }
 
   /**
@@ -87,13 +130,18 @@ public class Hole {
     return counters.size();
   }
 
-  public void updateLabel(String someText) {
+  public void updateLabelAndButtonVisibility(String someText) {
     counterDisplay.setText(someText);
   }
 
-  public void updateLabel() {
+  public void updateLabelAndButtonVisibility() {
     String counterString = String.valueOf(getCounterCount());
     counterDisplay.setText(counterString);
+    if (getCounterCount() == 0 && tk.getTurnHaver() == assignedPlayer) {
+      selectHole.setVisible(false);
+    } else if (getCounterCount() > 0 && tk.getTurnHaver() == assignedPlayer) {
+      selectHole.setVisible(true);
+    }
   }
 
   /**

@@ -1,7 +1,6 @@
 package com.group8.mancala;
 
 import com.group8.mancala.gameplayobjects.Hole;
-import com.group8.mancala.gameplayobjects.Mancala;
 import com.group8.mancala.playerfacing.Player;
 import com.group8.mancala.util.HoleContainer;
 import com.group8.mancala.util.HoleLinkedList;
@@ -58,8 +57,10 @@ public class GameController {
     public Text p1h2_text;
     @FXML
     public Text p1h1_text;
+
     @FXML
     public Text p1m_text;
+
     @FXML
     public Text p2h6_text;
     @FXML
@@ -74,12 +75,18 @@ public class GameController {
     public Text p2h1_text;
 
     @FXML
+    private Text p2m_text;
+
+    @FXML
     public Text player_one_indicator;
 
     @FXML
     public Text player_two_indicator;
 
     Button[] p1button;
+
+    @FXML
+    Button blank_button;
 
     @FXML
     Button p1h1_sel;
@@ -142,24 +149,29 @@ public class GameController {
         Text [] p1htext = new Text[]{p1h1_text, p1h2_text, p1h3_text, p1h4_text, p1h5_text, p1h6_text};
         p1button = new Button[]{p1h1_sel, p1h2_sel, p1h3_sel, p1h4_sel, p1h5_sel, p1h6_sel};
 
-        p1h = new Hole[p1htext.length];
+//        p1h = new Hole[p1htext.length];
         for (int i = 0; i < p1htext.length; i++) {
-            hll.addHole(new Hole(player1, p1htext[i], p1button[i]));
+            hll.addHole(new Hole(player1, p1htext[i], p1button[i], Hole.HoleType.HOLE));
         }
 
-        Text [] p2htext = new Text[]{p2h6_text, p2h5_text, p2h4_text, p2h3_text, p2h2_text, p2h1_text};
-        Button[] p2button = new Button[]{p2h6_sel, p2h5_sel, p2h4_sel, p2h3_sel, p2h2_sel, p2h1_sel};
+        hll.addHole(new Hole(player1, p1m_text, blank_button, Hole.HoleType.MANCALA));
 
-        p2h = new Hole[p2htext.length];
+        Text [] p2htext = new Text[]{p2h1_text, p2h2_text, p2h3_text, p2h4_text, p2h5_text, p2h6_text};
+        Button[] p2button = new Button[]{p2h1_sel, p2h2_sel, p2h3_sel, p2h4_sel, p2h5_sel, p2h6_sel};
+
+
+
         for (int i = 0; i < p2htext.length; i++) {
-            hll.addHole(new Hole(player2, p2htext[i], p2button[i]));
+            hll.addHole(new Hole(player2, p2htext[i], p2button[i], Hole.HoleType.HOLE));
         }
+
+        hll.addHole(new Hole(player2, p2m_text, blank_button, Hole.HoleType.MANCALA));
 
         // Setting the initial counter count text for each hole
         HoleContainer ptr = hll.getHead();
 
         while (ptr != null) {
-            ptr.getHole().updateLabel();
+            ptr.getHole().updateLabelAndButtonVisibility();
             ptr = ptr.getNextContainer();
         }
 
@@ -185,6 +197,7 @@ public class GameController {
             } else {
                 hole.getSelectHole().setVisible(true);
             }
+            hole.updateLabelAndButtonVisibility();
             curPtr = curPtr.getNextContainer();
         }
 

@@ -1,11 +1,12 @@
 package com.group8.mancala.playerfacing;
 
+import com.group8.mancala.Game;
+import com.group8.mancala.Main;
 import com.group8.mancala.gameplayobjects.Counter;
 import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.rule.DrawAction;
 import com.group8.mancala.rule.InventoryAction;
 import com.group8.mancala.rule.PlaceAction;
-import com.group8.mancala.util.HoleContainer;
 
 import java.util.Stack;
 
@@ -44,11 +45,23 @@ public class Hand {
         countersInHand.push(c);
     }
 
-    public void distributeCounters(HoleContainer root) {
-        HoleContainer curPtr = root;
+    public void distributeCounters(Hole hole) {
+        Hole curPtr = hole;
+        Hole head = hole.getHll().getHead().getHole();
 
         while (!countersInHand.empty()) {
-            curPtr = curPtr.getNextContainer();
+            try {
+                curPtr = curPtr.getSituatedContainer().getNextContainer().getHole();
+            } catch (NullPointerException e) {
+                curPtr = head;
+            }
+            curPtr.acceptCounter(countersInHand.pop());
+            hole.updateLabelAndButtonVisibility();
+        }
+        Game.TurnKnower tk = Main.getCurrentGame().getTk();
+
+        if (!(curPtr.gethType() == Hole.HoleType.MANCALA && curPtr.getAssignedPlayer() == associatedPlayer)) {
+            tk.nextTurn();
         }
     }
 }

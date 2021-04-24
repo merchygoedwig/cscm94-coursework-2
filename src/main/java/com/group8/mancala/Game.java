@@ -51,7 +51,7 @@ public class Game {
      * Class for tracking turns in a the game of Mancala, there can only ever be two players in a game, hence the two
      * fields for players
      */
-    class TurnKnower {
+    public class TurnKnower {
         private Player p1;
         private Player p2;
         private Player turnHaver; // I am incredibly sorry about the naming used in this class in general
