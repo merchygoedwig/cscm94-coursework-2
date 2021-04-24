@@ -16,16 +16,15 @@
    <children>
       <VBox prefHeight="418.0" prefWidth="371.0">
          <children>
-            <HBox fx:id="tournament" alignment="CENTER" prefHeight="11.0" prefWidth="365.0" visible="false">
-               <children>
-                  <ImageView fx:id="tour" fitHeight="9.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/tournament.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox fx:id="imgBox" alignment="CENTER" prefHeight="160.0" prefWidth="310.0">
+            <VBox fx:id="tournament" alignment="CENTER" prefHeight="0.0" prefWidth="355.0" visible="false">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="15.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox fx:id="imgBox" alignment="CENTER" prefHeight="179.0" prefWidth="365.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
