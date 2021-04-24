@@ -1,27 +1,57 @@
-/**
-FILENAME: Hole.java 
-Defines a class, Hole, to store information about a single hole and counters it contains.
-@author Paulina Mielewska
-*/
 package com.group8.mancala.gameplayobjects;
 
 import java.util.*;
+
+import com.group8.mancala.playerfacing.Hand;
 import com.group8.mancala.playerfacing.Player;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
-
+/**
+ * FILENAME: Hole.java
+ * Defines a class, Hole, to store information about a single hole and counters it contains.
+ * @author Paulina Mielewska and Genevieve Clifford
+ * @version InDev
+ */
 public class Hole {
   private Player assignedPlayer;
   private Stack<Counter> counters;
-  int counterAmount;
+  private Button selectHole;
+  private Text counterDisplay;
 
   /**
    * Constructor.
    *
-   * @param initialAmount initial number of counters in a hole
-   * @return Hole for which we set initial amount of counters
    */
-  public Hole(int initialAmount) {
-    counterAmount = initialAmount;
+  public Hole(Player playerToAssign, Text displayCounter, Button button) {
+    selectHole = button;
+    counterDisplay = displayCounter;
+    assignedPlayer = playerToAssign;
+    counters = new Stack<Counter>();
+    for (int i = 0; i < 4; i++) {
+      counters.push(new Counter());
+    }
+
+    button.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent actionEvent) {
+        giveAllCountersToHand();
+      }
+    });
+  }
+
+  public Hole() {
+
+  }
+
+  public Button getSelectHole() {
+    return selectHole;
+  }
+
+  public void setSelectHole(Button selectHole) {
+    this.selectHole = selectHole;
   }
 
   /**
@@ -30,16 +60,22 @@ public class Hole {
    * @param someCounter Counter thats has been moved from other Hole
    */   
   private void acceptCounter(Counter someCounter) {
-    Counter counter= new Counter();
-    counters.push(counter);
-    counterAmount++;
+    counters.push(someCounter);
   }
   
   /**
-   * Remove all counters from a hole.
+   * Remove a counter from a hole.
    */
-  private void giveUpCounter() {
-    counterAmount = 0;
+  public Counter giveUpCounter() {
+    return counters.pop();
+  }
+
+  public void giveAllCountersToHand() {
+    Hand hand = assignedPlayer.getHand();
+    while (!counters.empty()) {
+      hand.acceptCounterIntoHand(counters.pop());
+      this.updateLabel();
+    }
   }
 
   /**
@@ -48,8 +84,18 @@ public class Hole {
    * @return An int representing the number of counters in a hole.
    */
   public int getCounterCount() {
-    return counterAmount;
+    return counters.size();
   }
+
+  public void updateLabel(String someText) {
+    counterDisplay.setText(someText);
+  }
+
+  public void updateLabel() {
+    String counterString = String.valueOf(getCounterCount());
+    counterDisplay.setText(counterString);
+  }
+
   /**
    * Method to return the current player that can play and move the counters from the current hole.
    *

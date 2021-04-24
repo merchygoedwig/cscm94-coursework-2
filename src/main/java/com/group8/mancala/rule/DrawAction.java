@@ -9,6 +9,10 @@ public class DrawAction extends HandAction {
         super(player, hole);
     }
 
+    public DrawAction(Player player) {
+        super(player);
+    }
+
     @Override
     public Boolean checkValidity() {
         return null;

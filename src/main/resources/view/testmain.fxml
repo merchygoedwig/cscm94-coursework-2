@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group8.mancala.MainController">
+  <items>
+      <VBox prefHeight="400.0" prefWidth="295.0">
+         <children>
+            <ImageView fx:id="P1I" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="P1U" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_username" />
+            <Text fx:id="P1F" layoutX="10.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_fname" />
+            <Text fx:id="P1L" layoutX="10.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_lname" />
+            <Text fx:id="P1W" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_winrate" />
+            <Button fx:id="BEGIN_GAME" mnemonicParsing="false" onAction="#clickStartGame" text="Start Game" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="P2I" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="P2U" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_username" />
+            <Text fx:id="P2F" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_fname" />
+            <Text fx:id="P2L" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_lname" />
+            <Text fx:id="P2W" strokeType="OUTSIDE" strokeWidth="0.0" text="player_one_winrate" />
+         </children>
+      </VBox>
+  </items>
+</SplitPane>

@@ -17,6 +17,11 @@ abstract class HandAction implements Rule {
         target = hole;
     }
 
+    public HandAction(Player player) {
+        originator = player;
+        target = null;
+    }
+
     /**
      * A check for ascertaining if a target Hole "belongs" to the opponent (the Player
      * that isn't the current one). This means it is on the same side of the board
