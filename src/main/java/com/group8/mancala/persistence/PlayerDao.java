@@ -48,11 +48,17 @@ public interface PlayerDao {
     void save(Player player) throws ParseException, TransformerException;
 
     /**
-     * Updates an existing player in the DAO
-     * @param player player to be updated
-     * @param updates
+     * Updates a player that already exists in the DAO
+     * @param player player that already exists
+     * @throws ParseException
+     * @throws TransformerException
+     */
+    void update(Player player) throws ParseException, TransformerException;
+
+    /**
+     * Deletes an existing player from the DAO
+     * @param player player to be deleted from the DAO
      * @throws ParseException
      */
-    void update(Player player, String[] updates) throws ParseException;
-    void delete(Player player);
+    void delete(Player player) throws ParseException;
 }

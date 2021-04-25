@@ -165,13 +165,14 @@ public class PlayerDaoXmlImpl implements PlayerDao{
     }
 
     @Override
-    public void update(Player player, String[] updates) throws ParseException {
-//        To be implemented later
-//        Node targetPlayerNode = _getElementByUUID(player.getUuid());
+    public void update(Player player) throws ParseException, TransformerException {
+        delete(player);
+        save(player);
     }
 
     @Override
-    public void delete(Player player) {
-//        To be implemented later
+    public void delete(Player player) throws ParseException {
+        Element ePlayer = _getElementByUUID(player.getUuid());
+        ePlayer.getParentNode().removeChild(ePlayer);
     }
 }
