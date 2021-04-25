@@ -1,6 +1,8 @@
 package com.group8.mancala;
 
 import com.group8.mancala.gameplayobjects.Hole;
+import com.group8.mancala.playerfacing.ComputerControl;
+import com.group8.mancala.playerfacing.Hand;
 import com.group8.mancala.playerfacing.Player;
 import com.group8.mancala.util.HoleContainer;
 import com.group8.mancala.util.HoleLinkedList;
@@ -10,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
@@ -24,6 +27,8 @@ public class GameController {
 
     public Player player1;
     public Player player2;
+
+    private Hole[] computerHoles;
 
     public Hole[] p1h;
     public Hole[] p2h;
@@ -89,6 +94,21 @@ public class GameController {
 
     @FXML
     private Button end_game;
+
+    @FXML
+    public Button continue_turn;
+
+    @FXML
+    public Button double_points;
+
+    @FXML
+    private Text half_hand;
+
+    @FXML
+    private Text reverse_turn;
+
+    @FXML
+    private Text switch_sides;
 
     Button[] p1button;
 
@@ -166,10 +186,12 @@ public class GameController {
         Text [] p2htext = new Text[]{p2h1_text, p2h2_text, p2h3_text, p2h4_text, p2h5_text, p2h6_text};
         Button[] p2button = new Button[]{p2h1_sel, p2h2_sel, p2h3_sel, p2h4_sel, p2h5_sel, p2h6_sel};
 
-
+        this.computerHoles = new Hole[6];
 
         for (int i = 0; i < p2htext.length; i++) {
-            hll.addHole(new Hole(player2, p2htext[i], p2button[i], Hole.HoleType.HOLE));
+            Hole newHole = new Hole(player2, p2htext[i], p2button[i], Hole.HoleType.HOLE);
+            this.computerHoles[i] = newHole;
+            hll.addHole(newHole);
         }
 
         hll.addHole(new Hole(player2, p2m_text, blank_button, Hole.HoleType.MANCALA));
@@ -186,6 +208,24 @@ public class GameController {
         Main.getCurrentGame().hide();
 
         turn_count.setText("1");
+
+        if (p2.isComputerControlled()) {
+            p2.setAi(new ComputerControl());
+        }
+
+        if (game.getGt() == Game.GameType.TRADITIONAL) {
+            continue_turn.setVisible(false);
+            double_points.setVisible(false);
+            half_hand.setVisible(false);
+            reverse_turn.setVisible(false);
+            switch_sides.setVisible(false);
+        } else {
+            continue_turn.setVisible(!player1.getHand().usedContinueTurn());
+            double_points.setVisible(!player1.getHand().usedDoublePoints());
+            half_hand.setFill(Color.GREY);
+            reverse_turn.setFill(Color.GREY);
+            switch_sides.setFill(Color.GREY);
+        }
     }
 
     /**
@@ -230,5 +270,20 @@ public class GameController {
     public void endGame(ActionEvent actionEvent) throws IOException {
         Main.getCurrentGame().determineWinLoss();
         new SceneLoader("/view/testmain.fxml").load();
+    }
+    public Hole[] getComputerHoles() {
+        return computerHoles;
+    }
+
+    public void useContinueTurn() {
+        Hand handUsedThisRule = game.getTk().getTurnHaver().getHand();
+        handUsedThisRule.setContinueTurn(true);
+        continue_turn.setVisible(!handUsedThisRule.usedContinueTurn());
+    }
+
+    public void useDoublePoints() {
+        Hand handUsedThisRule = game.getTk().getTurnHaver().getHand();
+        handUsedThisRule.setDoublePoints(true);
+        double_points.setVisible(!handUsedThisRule.usedDoublePoints());
     }
 }

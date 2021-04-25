@@ -13,7 +13,11 @@ import java.util.Stack;
 public class Hand {
     private Player associatedPlayer;
     private Stack<Counter> countersInHand;
-    // These are extensions of the generic HandAction class that is used to determine if an action taken by a
+    private boolean continueTurn = false;
+    private boolean doublePoints = false;
+
+
+// These are extensions of the generic HandAction class that is used to determine if an action taken by a
     // hand is a valid one or not
 //    private DrawAction da;
 //    private InventoryAction ia;
@@ -29,6 +33,22 @@ public class Hand {
 //        da = new DrawAction(this.associatedPlayer);
 //        ia = new InventoryAction(this.associatedPlayer);
 //        pa = new PlaceAction(this.associatedPlayer);
+    }
+
+    public boolean usedContinueTurn() {
+        return continueTurn;
+    }
+
+    public void setContinueTurn(boolean continueTurn) {
+        this.continueTurn = continueTurn;
+    }
+
+    public boolean usedDoublePoints() {
+        return doublePoints;
+    }
+
+    public void setDoublePoints(boolean doublePoints) {
+        this.doublePoints = doublePoints;
     }
 
     /**

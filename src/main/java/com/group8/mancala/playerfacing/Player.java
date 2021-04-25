@@ -13,6 +13,8 @@ public class Player implements Comparable<Player> {
     private Double winPercentage;
     private Hand hand;
     private int counterTotal = 0;
+    private boolean computerControlled;
+    private ComputerControl ai;
 
     /**
      * Default constructor for player, don't use this unless you plan to set every variable using get/set methods.
@@ -39,7 +41,6 @@ public class Player implements Comparable<Player> {
         lastLogin = ll;
         imagePath = ip;
         winPercentage = wp;
-
     }
 
     /**
@@ -216,6 +217,22 @@ public class Player implements Comparable<Player> {
     public void setCounterTotal(int counterTotal) {
         this.counterTotal = counterTotal;
     }
+
+    public boolean isComputerControlled() {
+        return computerControlled;
+    }
+
+    public void setComputerControlled(boolean computerControlled) {
+        this.computerControlled = computerControlled;
+    }
+    public ComputerControl getAi() {
+        return ai;
+    }
+
+    public void setAi(ComputerControl ai) {
+        this.ai = ai;
+    }
+
 
     /**
      * Returns string interpretation of an instance of Player

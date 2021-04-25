@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Game is the representation of the game of Mancala. It is a singleton class, there can only be one instance of game
@@ -29,9 +30,12 @@ public class Game {
     private GameType gt;
 
     private TurnKnower tk;
+
     private GameController gc;
 
-    enum GameType {
+    private boolean compControl;
+
+    public enum GameType {
         TRADITIONAL,
         ARCADE
     }
@@ -39,7 +43,7 @@ public class Game {
     /**
      * Creates instance of Game, used when you want to start a game from Main, Administrator...
      */
-    public Game(Player player1, Player player2, GameType gt) {
+    public Game(Player player1, Player player2, GameType gt, boolean compControl) {
         this.player1 = player1;
         this.player2 = player2;
 
@@ -48,6 +52,8 @@ public class Game {
         this.tk = new TurnKnower(this.player1, this.player2);
         player1.setHand(new Hand(player1));
         player2.setHand(new Hand(player2));
+
+        this.compControl = compControl;
     }
 
     /**
@@ -90,10 +96,20 @@ public class Game {
                 turnHaver = p1;
             }
 
+            if (gt == GameType.ARCADE) {
+                Hand hand = tk.turnHaver.getHand();
+                gc.continue_turn.setVisible(!hand.usedContinueTurn());
+                gc.double_points.setVisible(!hand.usedDoublePoints());
+            }
+
             gc.hideAssetsFromOtherPlayer(this);
 
             turnCount++;
             gc.turn_count.setText(String.valueOf(turnCount));
+
+            if (turnHaver.isComputerControlled()) {
+                turnHaver.getAi().performRandomLegalMove();
+            }
 
             return getTurnHaver();
         }
@@ -109,6 +125,14 @@ public class Game {
 
     public TurnKnower getTk() {
         return tk;
+    }
+
+    public GameController getGc() {
+        return gc;
+    }
+
+    public GameType getGt() {
+        return gt;
     }
 
     /**

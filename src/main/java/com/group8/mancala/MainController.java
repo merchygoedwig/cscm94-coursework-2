@@ -1,5 +1,6 @@
 package com.group8.mancala;
 
+import com.group8.mancala.playerfacing.ComputerControl;
 import com.group8.mancala.playerfacing.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ public class MainController {
 
     Player player1;
     Player player2;
+    Player computer;
 
     @FXML
     private ImageView P1I;
@@ -66,8 +68,20 @@ public class MainController {
                 0.757
         );
 
-        player1 = jermasus;
-        player2 = otherjerma;
+        Player kryten = new Player(
+                "commanderUBend",
+                "Kryten",
+                "2X4B-523P",
+                new Date(),
+                "src/main/resources/view/kryten.jpeg",
+                0.25
+        );
+
+        kryten.setComputerControlled(true);
+
+        computer = kryten;
+        player1 = otherjerma;
+        player2 = jermasus;
 
         P1I.setImage(new Image(new FileInputStream(jermasus.getImagePath())));
         P1U.setText(jermasus.getUsername());
@@ -88,7 +102,17 @@ public class MainController {
      * @throws IOException
      */
     public void clickStartGame(ActionEvent actionEvent) throws IOException {
-        Main.setCurrentGame(new Game(player1, player2, Game.GameType.TRADITIONAL));
+        Main.setCurrentGame(new Game(player1, player2, Game.GameType.TRADITIONAL, false));
+        Main.getCurrentGame().startGame();
+    }
+
+    public void startComputerGame(ActionEvent actionEvent) throws IOException {
+        Main.setCurrentGame(new Game(player1, computer, Game.GameType.TRADITIONAL, true));
+        Main.getCurrentGame().startGame();
+    }
+
+    public void startArcadeGame(ActionEvent actionEvent) throws IOException {
+        Main.setCurrentGame(new Game(player1, player2, Game.GameType.ARCADE, false));
         Main.getCurrentGame().startGame();
     }
 }

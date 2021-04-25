@@ -205,54 +205,89 @@
             </VBox>
          </center>
          <bottom>
-            <GridPane id="almost_no_background" prefHeight="29.0" prefWidth="641.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="51.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="7.0" prefWidth="36.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="0.0" prefWidth="38.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="254.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="105.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="55.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="106.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <VBox prefHeight="58.0" prefWidth="641.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player">
-                     <font>
-                        <Font name="Comfortaa Regular" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="player_one_indicator" fill="#00004b" strokeType="OUTSIDE" strokeWidth="0.0" text="ONE" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Comfortaa Regular" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="player_two_indicator" fill="#4b0000" strokeType="OUTSIDE" strokeWidth="0.0" text="TWO" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="Comfortaa Regular" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="it's your time to shine!" wrappingWidth="155.04296875" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="Comfortaa Regular" size="13.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="end_game" minWidth="0.0" mnemonicParsing="false" onAction="#endGame" text="Forfeit Game" GridPane.columnIndex="6" />
-                  <Button fx:id="blank_button" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="Button" GridPane.columnIndex="6" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Turn:" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="Comfortaa Regular" size="13.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="turn_count" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5">
-                     <font>
-                        <Font name="Comfortaa Regular" size="13.0" />
-                     </font>
-                  </Text>
+                  <GridPane id="almost_no_background" prefHeight="29.0" prefWidth="641.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="51.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="7.0" prefWidth="36.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="0.0" prefWidth="38.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="254.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="105.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="55.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="106.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="player_one_indicator" fill="#00004b" strokeType="OUTSIDE" strokeWidth="0.0" text="ONE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="player_two_indicator" fill="#4b0000" strokeType="OUTSIDE" strokeWidth="0.0" text="TWO" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="it's your time to shine!" wrappingWidth="155.04296875" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="end_game" minWidth="0.0" mnemonicParsing="false" onAction="#endGame" text="Forfeit Game" GridPane.columnIndex="6" />
+                        <Button fx:id="blank_button" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="Button" GridPane.columnIndex="6" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Turn:" GridPane.columnIndex="4">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="turn_count" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+                  <GridPane id="almost_no_background">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="continue_turn" mnemonicParsing="false" onAction="#useContinueTurn" text="Continue Turn" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="double_points" mnemonicParsing="false" onAction="#useDoublePoints" text="Double Points" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text fx:id="half_hand" strokeType="OUTSIDE" strokeWidth="0.0" text="Half Hand" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="reverse_turn" strokeType="OUTSIDE" strokeWidth="0.0" text="Reverse Turn" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="switch_sides" strokeType="OUTSIDE" strokeWidth="0.0" text="Switch Sides" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="Comfortaa Regular" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
                </children>
-            </GridPane>
+            </VBox>
          </bottom>
       </BorderPane>
    </children>
