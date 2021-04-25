@@ -82,6 +82,11 @@ public class MainController {
         P2W.setText(String.valueOf(otherjerma.getWinPercentage()));
     }
 
+    /**
+     * Action for the "Start Game" button, in this case, starts an instance of the traditional game
+     * @param actionEvent
+     * @throws IOException
+     */
     public void clickStartGame(ActionEvent actionEvent) throws IOException {
         Main.setCurrentGame(new Game(player1, player2, Game.GameType.TRADITIONAL));
         Main.getCurrentGame().startGame();

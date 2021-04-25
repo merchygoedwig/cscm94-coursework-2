@@ -28,7 +28,9 @@ public class HoleLinkedList {
     }
 
     public void addHole(Hole hole) {
+        hole.setHll(this);
         HoleContainer newHoleContainer = new HoleContainer(hole);
+        hole.setSituatedContainer(newHoleContainer);
 
         if (head == null) {
             head = newHoleContainer;

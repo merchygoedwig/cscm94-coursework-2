@@ -33,18 +33,35 @@ public class Main extends Application {
         mainStage.setTitle("Untitled Mancala Game");
     }
 
+    /**
+     * Returns singleton instance of Stage
+     * @return main stage
+     */
     public static Stage getMainStage() {
         return mainStage;
     }
 
+    /**
+     * Returns singleton instance of Game
+     * @return game
+     */
     public static Game getCurrentGame() {
         return currentGame;
     }
 
+    /**
+     * Used for changing the singleton instance of game (used when a game is over and you wish to start a new game,
+     * very useful when running the tournament mode).
+     * @param game a new instance of a game to switch out the singleton instance of game
+     */
     public static void setCurrentGame(Game game) {
         currentGame = game;
     }
 
+    /**
+     * This is the entry-point for the main application
+     * @param args you cannot specify any arguments!
+     */
     public static void main(String[] args) {
         launch(args);
     }

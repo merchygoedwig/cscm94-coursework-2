@@ -10,10 +10,5 @@ $> cat icelandToWinEurovision2021.txt
 
 Compilation instructions:
 -------------------------
-- This project is to be compiled using Ant, to use it:
-  - Hop up one directory from where this text file is located.
-  - In a terminal/shell session on your computer, run 'ant':
-    - the compiled files will be located in build/
-    - a nicely packaged .jar will be popped into dist/
-  - If you'd like to build a local copy of the most recent javadoc documentation, run 'ant doc'
-    - this will put all of the assets required in doc/
+- This project is built using Maven, make sure you have Maven installed before doing anything!
+- To build, run the JavaFX program and perform unit tests, you'll need to trigger the Maven `javafx:run` build target. (This means that you'll need to make sure you're in the main parent directory of the folder structure, then type 'mvn javafx:run').
