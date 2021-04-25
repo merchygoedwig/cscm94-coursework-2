@@ -19,6 +19,6 @@ public interface PlayerDao {
     Player get(String username) throws ParseException;
     List<Player> getAll() throws ParseException;
     void save(Player player) throws ParseException, TransformerException;
-    void update(Player player, String[] updates) throws ParseException;
-    void delete(Player player);
+    void update(Player player) throws ParseException, TransformerException;
+    void delete(Player player) throws ParseException;
 }
