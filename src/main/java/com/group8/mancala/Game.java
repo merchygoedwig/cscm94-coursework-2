@@ -1,6 +1,9 @@
 package com.group8.mancala;
+import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.playerfacing.Hand;
 import com.group8.mancala.playerfacing.Player;
+import com.group8.mancala.util.HoleContainer;
+import com.group8.mancala.util.HoleLinkedList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
  * @version 1.1
  */
 public class Game {
-    private int turnCount;
+    private int turnCount = 1;
     private Player player1;
     private Player player2;
     private Player winner;
@@ -89,6 +92,9 @@ public class Game {
 
             gc.hideAssetsFromOtherPlayer(this);
 
+            turnCount++;
+            gc.turn_count.setText(String.valueOf(turnCount));
+
             return getTurnHaver();
         }
 
@@ -118,18 +124,11 @@ public class Game {
     }
 
     /**
-     * Increments the turn counter for the current instance of com.group8.mancala.java.Game
+     * Increments the turn counter for the current instance of Game
      */
     public void incrementTurnCount() {
         turnCount++;
     }
-
-//    public void end() throws TransformerException, ParseException {
-//        // here will be code for closing GUI windows etc.
-//        for (Player player : playersInGame) {
-//            currentSession.dao.save(player);
-//        }
-//    }
 
     /**
      * Method to start a new instance of GameController using the current game, this (in effect) launches the GUI
@@ -160,13 +159,49 @@ public class Game {
         gc.hideAssetsFromOtherPlayer(tk);
     }
 
-//    public void updatePlayerScores() {
-//        Double winnerScore = winner.getWinPercentage();
-//        Double loserScore = loser.getWinPercentage();
-//
-//        Double expectedProbability = 1.0 / (1.0 + Math.pow(10.0, ((loserScore - winnerScore) / 400.0)));
-//
-//        Double newWinnerScore = winnerScore +
-//    }
+    public void determineWinLoss() {
+        HoleLinkedList hll = gc.hll;
+        Player forfeitedGamePlayer = tk.getTurnHaver();
+        Player otherPlayer = tk.getOtherPlayer();
+
+        boolean hasCounters = false;
+
+        HoleContainer ptr = hll.getHead();
+        Hole hole = ptr.getHole();
+        Player temp;
+
+        while (hole != null) {
+            temp = hole.getAssignedPlayer();
+
+            if (hole.getCounterCount() > 0 && hole.getAssignedPlayer() == forfeitedGamePlayer &&
+                    hole.gethType() != Hole.HoleType.MANCALA) {
+                hasCounters = true;
+            }
+
+            if (!(hole.getAssignedPlayer() == forfeitedGamePlayer && hole.gethType() == Hole.HoleType.HOLE)) {
+                temp.setCounterTotal(temp.getCounterTotal() + hole.getCounterCount());
+            }
+
+            try {
+                hole = hole.getSituatedContainer().getNextContainer().getHole();
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+
+        // This is the case where a player forfeits the game before it has concluded
+        if (hasCounters) {
+            winner = otherPlayer;
+            loser = forfeitedGamePlayer;
+        } else {
+            if (forfeitedGamePlayer.getCounterTotal() > otherPlayer.getCounterTotal()) {
+                winner = forfeitedGamePlayer;
+                loser = otherPlayer;
+            } else {
+                loser = forfeitedGamePlayer;
+                winner = otherPlayer;
+            }
+        }
+    }
 
 }

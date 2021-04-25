@@ -4,6 +4,7 @@ import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.playerfacing.Player;
 import com.group8.mancala.util.HoleContainer;
 import com.group8.mancala.util.HoleLinkedList;
+import com.group8.mancala.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -78,10 +79,16 @@ public class GameController {
     private Text p2m_text;
 
     @FXML
+    Text turn_count;
+
+    @FXML
     public Text player_one_indicator;
 
     @FXML
     public Text player_two_indicator;
+
+    @FXML
+    private Button end_game;
 
     Button[] p1button;
 
@@ -177,6 +184,8 @@ public class GameController {
 
         // Hides control elements for player two initially
         Main.getCurrentGame().hide();
+
+        turn_count.setText("1");
     }
 
     /**
@@ -211,11 +220,15 @@ public class GameController {
     }
 
     /**
-     * Used for testing only, skips turn for the current player
+     * Ends the current game when the player who cannot make any more moves (or a player that wants to give up) clicks
+     * the "Forfeit Game" button on screen. Determines the winner through the determineWinLoss function on Game.
+     * Returns to the Main/Administrator view, but does not destroy the singleton instance of game, meaning the winner/
+     * loser can be extracted to do player win/loss ratio adjustments etc.
      * @param actionEvent
      * @throws IOException
      */
-    public void clickNextTurn(ActionEvent actionEvent) throws IOException {
-        game.getTk().nextTurn();
+    public void endGame(ActionEvent actionEvent) throws IOException {
+        Main.getCurrentGame().determineWinLoss();
+        new SceneLoader("/view/testmain.fxml").load();
     }
 }

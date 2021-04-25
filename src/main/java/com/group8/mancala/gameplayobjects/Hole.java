@@ -26,39 +26,20 @@ public class Hole {
   private Text counterDisplay;
   private HoleType hType;
   private Game.TurnKnower tk;
+  private HoleLinkedList hll;
+  private HoleContainer situatedContainer;
 
   public enum HoleType {
     HOLE,
     MANCALA
   }
 
-  public HoleType gethType() {
-    return hType;
-  }
-
-  public HoleLinkedList getHll() {
-    return hll;
-  }
-
-  public void setHll(HoleLinkedList hll) {
-    this.hll = hll;
-  }
-
-  private HoleLinkedList hll;
-  private HoleContainer situatedContainer;
-
-
-  public HoleContainer getSituatedContainer() {
-    return situatedContainer;
-  }
-
-  public void setSituatedContainer(HoleContainer situatedContainer) {
-    this.situatedContainer = situatedContainer;
-  }
-
   /**
-   * Constructor.
-   *
+   * Constructor for Hole
+   * @param playerToAssign the player who the hole is associate with (i.e. same side of board as player)
+   * @param displayCounter instance of JavaFX text showing the number of counters in the hole
+   * @param button button that selects the hole (scoops up all of the Counters into the Player's Hand)
+   * @param ht either Hole.HoleType.HOLE or Hole.HoleType.MANCALA (sets whether the hole is a normal hole or a mancala)
    */
   public Hole(Player playerToAssign, Text displayCounter, Button button, HoleType ht) {
     selectHole = button;
@@ -82,22 +63,63 @@ public class Hole {
     });
   }
 
-  public Hole() {
+  /**
+   * Do not use this constructor, this has to be here or JavaFX will complain
+   */
+  public Hole() { }
 
+  /**
+   * Gives the HoleContainer that the instance of Hole "sits" in
+   * @return surrounding HoleContainer
+   */
+  public HoleContainer getSituatedContainer() {
+    return situatedContainer;
   }
 
+  /**
+   * Sets the HoleContainer that the instance of Hole "sits" in
+   * @param situatedContainer HoleContainer that the instance of Hole "sits" in
+   */
+  public void setSituatedContainer(HoleContainer situatedContainer) {
+    this.situatedContainer = situatedContainer;
+  }
+
+  /**
+   * Gives the enum HoleType that the Hole is assigned
+   * @return HoleType of the Hole
+   */
+  public HoleType gethType() {
+    return hType;
+  }
+
+  /**
+   * Gets the singleton instance of HoleLinkedList that the Hole resides in
+   * @return Game's HoleLinkedList
+   */
+  public HoleLinkedList getHll() {
+    return hll;
+  }
+
+  /**
+   * Gets the singleton instance of HoleLinkedList that the Hole resides in
+   * @param hll HoleLinkedList that the Hole resides in
+   */
+  public void setHll(HoleLinkedList hll) {
+    this.hll = hll;
+  }
+
+  /**
+   * Gets the button that is used to perform the player's action (selecting a Hole to take counters from)
+   * @return
+   */
   public Button getSelectHole() {
     return selectHole;
-  }
-
-  public void setSelectHole(Button selectHole) {
-    this.selectHole = selectHole;
   }
 
   /**
    * Accepts new counters that are added to a Hole during the game.
    *
-   * @param someCounter Counter thats has been moved from other Hole
+   * @param someCounter Counter that has been moved from another Hole
    */   
   public void acceptCounter(Counter someCounter) {
     counters.push(someCounter);
@@ -111,8 +133,19 @@ public class Hole {
     return counters.pop();
   }
 
+  /**
+   * Wrapper overload for function of same name, specifies hand from that belonging to the current hole instead
+   */
   public void giveAllCountersToHand() {
     Hand hand = assignedPlayer.getHand();
+    giveAllCountersToHand(hand);
+  }
+
+  /**
+   * Gives all the counters in the hole's stack to the hand that has requested them
+   * @param hand the hand to give all counters in a stack to
+   */
+  public void giveAllCountersToHand(Hand hand) {
     while (!counters.empty()) {
       hand.acceptCounterIntoHand(counters.pop());
       this.updateLabelAndButtonVisibility();
@@ -124,16 +157,16 @@ public class Hole {
   /**
    * Returns the number of counters in a given hole.
    *
-   * @return An int representing the number of counters in a hole.
+   * @return An integer representing the number of counters in a hole.
    */
   public int getCounterCount() {
     return counters.size();
   }
 
-  public void updateLabelAndButtonVisibility(String someText) {
-    counterDisplay.setText(someText);
-  }
-
+  /**
+   * Method to update the label and button for each hole corresponding to both current turn and the number of counters
+   * in the hole
+   */
   public void updateLabelAndButtonVisibility() {
     String counterString = String.valueOf(getCounterCount());
     counterDisplay.setText(counterString);
@@ -151,5 +184,13 @@ public class Hole {
    */  
   public Player getAssignedPlayer() {
     return assignedPlayer;
+  }
+
+  /**
+   * Returns a string representing the state of the hole
+   * @return string interpretation of hole
+   */
+  public String toString() {
+    return assignedPlayer.getUsername() + getCounterCount() + gethType();
   }
 }

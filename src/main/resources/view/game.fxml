@@ -207,11 +207,13 @@
          <bottom>
             <GridPane id="almost_no_background" prefHeight="29.0" prefWidth="641.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="48.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="7.0" prefWidth="38.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="10.0" prefWidth="43.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="414.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="51.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="7.0" prefWidth="36.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="464.0" minWidth="0.0" prefWidth="38.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="254.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="55.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="106.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -237,8 +239,18 @@
                         <Font name="Comfortaa Regular" size="13.0" />
                      </font>
                   </Text>
-                  <Button minWidth="0.0" mnemonicParsing="false" onAction="#clickNextTurn" text="Next Turn" GridPane.columnIndex="4" />
-                  <Button fx:id="blank_button" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="Button" GridPane.columnIndex="4" />
+                  <Button fx:id="end_game" minWidth="0.0" mnemonicParsing="false" onAction="#endGame" text="Forfeit Game" GridPane.columnIndex="6" />
+                  <Button fx:id="blank_button" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="Button" GridPane.columnIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Turn:" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="turn_count" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5">
+                     <font>
+                        <Font name="Comfortaa Regular" size="13.0" />
+                     </font>
+                  </Text>
                </children>
             </GridPane>
          </bottom>
