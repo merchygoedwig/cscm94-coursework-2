@@ -90,6 +90,10 @@ public class Game {
          * @return Player which currently has the turn
          */
         public Player nextTurn() {
+            turnHaver.getHand().setHalfHand(false);
+            turnHaver.getHand().setReverseTurn(false);
+            turnHaver.getHand().setReverseTurn(false);
+
             if (turnHaver == p1) {
                 turnHaver = p2;
             } else {

@@ -164,6 +164,17 @@ public class Hand {
 
         // Moves through all the Holes in the linked list, if it hits the end, it goes back to the beginning, will
         // continue to distribute counters until the stack in the hand is empty
+
+        if (isHalfHand()) {
+            int amtInHand = countersInHand.size();
+            int toRemainInHole = amtInHand / 2 - amtInHand % 2;
+
+            for (int i = 1; i <= toRemainInHole; i++) {
+                countersInHand.pop();
+                curPtr.acceptCounter(new Counter(Counter.CounterType.REGULAR));
+            }
+        }
+
         while (!countersInHand.empty()) {
             try {
                 curPtr = curPtr.getSituatedContainer().getNextContainer().getHole();

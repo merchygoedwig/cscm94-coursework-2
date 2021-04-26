@@ -9,10 +9,30 @@ public class Counter {
     private CounterType ct;
 
     public enum CounterType{
-        REGULAR,
-        HALF_HAND,
-        REVERSE_TURN,
-        SWITCH_SIDES
+        REGULAR {
+            @Override
+            public String toString() {
+                return "Regular";
+            }
+        },
+        HALF_HAND {
+            @Override
+            public String toString() {
+                return "Half Hand";
+            }
+        },
+        REVERSE_TURN {
+            @Override
+            public String toString() {
+                return "Reverse Turn";
+            }
+        },
+        SWITCH_SIDES {
+            @Override
+            public String toString() {
+                return "Switch Sides";
+            }
+        }
     }
 
     public Counter(CounterType ct) {
