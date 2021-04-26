@@ -140,18 +140,16 @@ public class Hand {
             setHalfHand(true);
             setSwitchSides(false);
             setReverseTurn(false);
-            gc.last_power_up.setText(returnedString);
         } else if (ct == Counter.CounterType.REVERSE_TURN) {
             setReverseTurn(true);
             setHalfHand(false);
             setSwitchSides(false);
-            gc.last_power_up.setText(returnedString);
         } else if (ct == Counter.CounterType.SWITCH_SIDES) {
             setSwitchSides(true);
             setHalfHand(false);
             setReverseTurn(false);
-            gc.last_power_up.setText(returnedString);
         }
+        gc.last_power_up.setText(returnedString);
     }
 
     /**
@@ -173,6 +171,41 @@ public class Hand {
                 countersInHand.pop();
                 curPtr.acceptCounter(new Counter(Counter.CounterType.REGULAR));
             }
+        } else if (isReverseTurn()) {
+            while (!countersInHand.empty()) {
+                Hole seek = curPtr;
+                Hole prev = curPtr;
+                try {
+                    curPtr = curPtr.getSituatedContainer().getNextContainer().getHole();
+                } catch (NullPointerException e) {
+                    curPtr = head;
+                }
+
+                while (curPtr != seek) {
+                    prev = curPtr;
+                    try {
+                        curPtr = curPtr.getSituatedContainer().getNextContainer().getHole();
+                    } catch (NullPointerException e) {
+                        curPtr = head;
+                    }
+                }
+                countersInHand.pop();
+                curPtr.acceptCounter(new Counter(Counter.CounterType.REGULAR));
+                hole.updateLabelAndButtonVisibility();
+            }
+        } else if (isSwitchSides()) {
+            while (!countersInHand.empty()) {
+                curPtr.acceptCounter(countersInHand.pop());
+            }
+            curPtr.updateLabelAndButtonVisibility();
+            for (int i = 0; i < 7; i++) {
+                try {
+                    curPtr = curPtr.getSituatedContainer().getNextContainer().getHole();
+                } catch (NullPointerException e) {
+                    curPtr = head;
+                }
+            }
+            curPtr.giveAllCountersToHand(this);
         }
 
         while (!countersInHand.empty()) {
