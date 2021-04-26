@@ -16,6 +16,9 @@ public class Player implements Comparable<Player> {
     private boolean computerControlled;
     private ComputerControl ai;
 
+    private int initialMancalaStore;
+    private int finalMancalaScore;
+
     /**
      * Default constructor for player, don't use this unless you plan to set every variable using get/set methods.
      * You SHOULDN'T do this unless you have a very good reason.
@@ -233,6 +236,21 @@ public class Player implements Comparable<Player> {
         this.ai = ai;
     }
 
+    public int getInitialMancalaStore() {
+        return initialMancalaStore;
+    }
+
+    public void setInitialMancalaStore(int initialMancalaStore) {
+        this.initialMancalaStore = initialMancalaStore;
+    }
+
+    public int getFinalMancalaScore() {
+        return finalMancalaScore;
+    }
+
+    public void setFinalMancalaScore(int finalMancalaScore) {
+        this.finalMancalaScore = finalMancalaScore;
+    }
 
     /**
      * Returns string interpretation of an instance of Player

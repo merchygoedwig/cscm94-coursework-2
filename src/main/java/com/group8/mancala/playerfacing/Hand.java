@@ -23,11 +23,13 @@ public class Hand {
     private boolean halfHand = false;
     private boolean reverseTurn = false;
     private boolean switchSides = false;
+    private int initialMancalaStore;
+    private int finalMancalaScore;
 
     private Counter.CounterType[] counterChoices;
 
 // These are extensions of the generic HandAction class that is used to determine if an action taken by a
-    // hand is a valid one or not
+// hand is a valid one or not
 //    private DrawAction da;
 //    private InventoryAction ia;
 //    private PlaceAction pa;

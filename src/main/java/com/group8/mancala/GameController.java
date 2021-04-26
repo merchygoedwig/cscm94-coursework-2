@@ -93,9 +93,6 @@ public class GameController {
     public Text player_two_indicator;
 
     @FXML
-    private Button end_game;
-
-    @FXML
     public Button continue_turn;
 
     @FXML
@@ -269,13 +266,17 @@ public class GameController {
         Hand handUsedThisRule = game.getTk().getTurnHaver().getHand();
         handUsedThisRule.setContinueTurnThisTurn(true);
         handUsedThisRule.setContinueTurn(true);
+        last_power_up.setText("Continue turn not implemented!");
         continue_turn.setVisible(!handUsedThisRule.usedContinueTurn());
         handUsedThisRule.setContinueTurnThisTurn(false);
     }
 
     public void useDoublePoints() {
-        Hand handUsedThisRule = game.getTk().getTurnHaver().getHand();
+        Player playerUsedThisRule = game.getTk().getTurnHaver();
+        Hand handUsedThisRule = playerUsedThisRule.getHand();
+        handUsedThisRule.setContinueTurnThisTurn(true);
         handUsedThisRule.setDoublePoints(true);
+        playerUsedThisRule.setInitialMancalaStore(hll.getMancala(playerUsedThisRule).getCounterCount());
         double_points.setVisible(!handUsedThisRule.usedDoublePoints());
     }
 }

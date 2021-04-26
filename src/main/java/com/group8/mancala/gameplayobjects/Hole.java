@@ -29,6 +29,9 @@ public class Hole {
   private HoleLinkedList hll;
   private HoleContainer situatedContainer;
 
+  /**
+   * Representation of two types of holes used in Mancala, Hole and Mancala. Used in the constructor for the Hole.
+   */
   public enum HoleType {
     HOLE,
     MANCALA
@@ -39,7 +42,7 @@ public class Hole {
    * @param playerToAssign the player who the hole is associate with (i.e. same side of board as player)
    * @param displayCounter instance of JavaFX text showing the number of counters in the hole
    * @param button button that selects the hole (scoops up all of the Counters into the Player's Hand)
-   * @param ht either Hole.HoleType.HOLE or Hole.HoleType.MANCALA (sets whether the hole is a normal hole or a mancala)
+   * @param ht either {@link HoleType#HOLE} or {@link HoleType#MANCALA}
    */
   public Hole(Player playerToAssign, Text displayCounter, Button button, HoleType ht) {
     selectHole = button;

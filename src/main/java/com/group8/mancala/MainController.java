@@ -106,11 +106,21 @@ public class MainController {
         Main.getCurrentGame().startGame();
     }
 
+    /**
+     * Action for the start computer game button, (reminder, computer games don't work!)
+     * @param actionEvent
+     * @throws IOException
+     */
     public void startComputerGame(ActionEvent actionEvent) throws IOException {
         Main.setCurrentGame(new Game(player1, computer, Game.GameType.TRADITIONAL, true));
         Main.getCurrentGame().startGame();
     }
 
+    /**
+     * Action for the start arcade game button
+     * @param actionEvent
+     * @throws IOException
+     */
     public void startArcadeGame(ActionEvent actionEvent) throws IOException {
         Main.setCurrentGame(new Game(player1, player2, Game.GameType.ARCADE, false));
         Main.getCurrentGame().startGame();
