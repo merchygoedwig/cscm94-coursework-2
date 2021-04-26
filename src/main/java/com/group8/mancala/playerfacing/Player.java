@@ -13,6 +13,11 @@ public class Player implements Comparable<Player> {
     private Double winPercentage;
     private Hand hand;
     private int counterTotal = 0;
+    private boolean computerControlled;
+    private ComputerControl ai;
+
+    private int initialMancalaStore;
+    private int finalMancalaScore;
 
     /**
      * Default constructor for player, don't use this unless you plan to set every variable using get/set methods.
@@ -39,7 +44,6 @@ public class Player implements Comparable<Player> {
         lastLogin = ll;
         imagePath = ip;
         winPercentage = wp;
-
     }
 
     /**
@@ -215,6 +219,37 @@ public class Player implements Comparable<Player> {
      */
     public void setCounterTotal(int counterTotal) {
         this.counterTotal = counterTotal;
+    }
+
+    public boolean isComputerControlled() {
+        return computerControlled;
+    }
+
+    public void setComputerControlled(boolean computerControlled) {
+        this.computerControlled = computerControlled;
+    }
+    public ComputerControl getAi() {
+        return ai;
+    }
+
+    public void setAi(ComputerControl ai) {
+        this.ai = ai;
+    }
+
+    public int getInitialMancalaStore() {
+        return initialMancalaStore;
+    }
+
+    public void setInitialMancalaStore(int initialMancalaStore) {
+        this.initialMancalaStore = initialMancalaStore;
+    }
+
+    public int getFinalMancalaScore() {
+        return finalMancalaScore;
+    }
+
+    public void setFinalMancalaScore(int finalMancalaScore) {
+        this.finalMancalaScore = finalMancalaScore;
     }
 
     /**
