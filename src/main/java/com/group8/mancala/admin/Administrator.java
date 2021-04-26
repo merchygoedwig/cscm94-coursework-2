@@ -263,7 +263,7 @@ public class Administrator {
   /*
    * recursive function for simulate tournament
    */
-  private Stack<Player>  processGame(Stack<Player> competitors) throws FileNotFoundException {
+  private Stack<Player>  processGame(Stack<Player> competitors) throws IOException {
 	  if(competitors.size() == 1) { 
 		  return competitors;
 		  }else {
@@ -273,8 +273,8 @@ public class Administrator {
 			      Main.setCurrentGame(new Game(competitors.pop(),competitors.pop(), Game.GameType.TRADITIONAL));
 		          Main.getCurrentGame().startGame();
 		          // wait after game session ended
-				  Player winner = Main.getCurrentGame.winner;
-			      Player loser = Main.getCurrentGame.loser;
+				  Player winner = Main.getCurrentGame().getWinner();
+			      Player loser = Main.getCurrentGame().getLoser;
                   //add winner to next round
 			      Winners.add(winner);
 			
