@@ -6,5 +6,27 @@ package com.group8.mancala.gameplayobjects;
  * @version InDev
  */
 public class Counter {
+    private CounterType ct;
 
+    public enum CounterType{
+        REGULAR,
+        HALF_HAND,
+        REVERSE_TURN,
+        SWITCH_SIDES
+    }
+
+    public Counter(CounterType ct) {
+        this.ct = ct;
+    }
+
+    public CounterType getCt() {
+        return ct;
+    }
+
+    @Override
+    public String toString() {
+        return "Counter{" +
+                "ct=" + ct +
+                '}';
+    }
 }

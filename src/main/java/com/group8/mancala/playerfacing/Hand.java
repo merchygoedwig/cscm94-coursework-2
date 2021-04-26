@@ -1,21 +1,30 @@
 package com.group8.mancala.playerfacing;
 
 import com.group8.mancala.Game;
+import com.group8.mancala.GameController;
 import com.group8.mancala.Main;
 import com.group8.mancala.gameplayobjects.Counter;
 import com.group8.mancala.gameplayobjects.Hole;
 import com.group8.mancala.rule.DrawAction;
 import com.group8.mancala.rule.InventoryAction;
 import com.group8.mancala.rule.PlaceAction;
+import javafx.scene.paint.Color;
 
+import java.util.Random;
 import java.util.Stack;
 
 public class Hand {
     private Player associatedPlayer;
     private Stack<Counter> countersInHand;
     private boolean continueTurn = false;
+    private boolean continueTurnThisTurn = false;
     private boolean doublePoints = false;
+    private boolean doublePointsThisTurn = false;
+    private boolean halfHand = false;
+    private boolean reverseTurn = false;
+    private boolean switchSides = false;
 
+    private Counter.CounterType[] counterChoices;
 
 // These are extensions of the generic HandAction class that is used to determine if an action taken by a
     // hand is a valid one or not
@@ -27,6 +36,19 @@ public class Hand {
         this.associatedPlayer = associatedPlayer;
 
         countersInHand = new Stack<Counter>();
+        counterChoices = new Counter.CounterType[30];
+
+        int ptr = 0;
+
+        for (int i = 0; i < 27; i++) {
+            counterChoices[i] = Counter.CounterType.REGULAR;
+            ptr++;
+        }
+
+        counterChoices[ptr] = Counter.CounterType.HALF_HAND;
+        counterChoices[ptr + 1] = Counter.CounterType.REVERSE_TURN;
+        counterChoices[ptr + 2] = Counter.CounterType.SWITCH_SIDES;
+
 
 //        Not actually implemented yet! Will be for the arcade mode :3
 
@@ -51,12 +73,85 @@ public class Hand {
         this.doublePoints = doublePoints;
     }
 
+    public boolean isContinueTurnThisTurn() {
+        return continueTurnThisTurn;
+    }
+
+    public void setContinueTurnThisTurn(boolean continueTurnThisTurn) {
+        this.continueTurnThisTurn = continueTurnThisTurn;
+    }
+
+    public boolean isDoublePointsThisTurn() {
+        return doublePointsThisTurn;
+    }
+
+    public void setDoublePointsThisTurn(boolean doublePointsThisTurn) {
+        this.doublePointsThisTurn = doublePointsThisTurn;
+    }
+
+    public boolean isHalfHand() {
+        return halfHand;
+    }
+
+    public void setHalfHand(boolean halfHand) {
+        this.halfHand = halfHand;
+    }
+
+    public boolean isReverseTurn() {
+        return reverseTurn;
+    }
+
+    public void setReverseTurn(boolean reverseTurn) {
+        this.reverseTurn = reverseTurn;
+    }
+
+    public boolean isSwitchSides() {
+        return switchSides;
+    }
+
+    public void setSwitchSides(boolean switchSides) {
+        this.switchSides = switchSides;
+    }
+
     /**
      * Accepts a counter into the Hand's Counter stack from a Hole
      * @param c counter to be accepted
      */
     public void acceptCounterIntoHand(Counter c) {
+        if (Main.getCurrentGame().getGt() == Game.GameType.ARCADE) {
+            Random random = new Random();
+            int randInt = random.nextInt(counterChoices.length);
+            Counter.CounterType chosenType = counterChoices[randInt];
+            c = new Counter(chosenType);
+            System.out.println(c);
+        }
+
+        handleSpecialCounter(c);
         countersInHand.push(c);
+    }
+
+    public void handleSpecialCounter(Counter c) {
+        GameController gc = Main.getCurrentGame().getGc();
+        Counter.CounterType ct = c.getCt();
+        String fString = "%s activated %s";
+        String returnedString = String.format(fString, associatedPlayer.getUsername(), ct);
+
+        if (ct == Counter.CounterType.HALF_HAND) {
+            setHalfHand(true);
+            setSwitchSides(false);
+            setReverseTurn(false);
+            gc.last_power_up.setText(returnedString);
+        } else if (ct == Counter.CounterType.REVERSE_TURN) {
+            setReverseTurn(true);
+            setHalfHand(false);
+            setSwitchSides(false);
+            gc.last_power_up.setText(returnedString);
+        } else if (ct == Counter.CounterType.SWITCH_SIDES) {
+            setSwitchSides(true);
+            setHalfHand(false);
+            setReverseTurn(false);
+            gc.last_power_up.setText(returnedString);
+        }
     }
 
     /**
@@ -75,7 +170,8 @@ public class Hand {
             } catch (NullPointerException e) {
                 curPtr = head;
             }
-            curPtr.acceptCounter(countersInHand.pop());
+            countersInHand.pop();
+            curPtr.acceptCounter(new Counter(Counter.CounterType.REGULAR));
             hole.updateLabelAndButtonVisibility();
         }
         Game.TurnKnower tk = Main.getCurrentGame().getTk();

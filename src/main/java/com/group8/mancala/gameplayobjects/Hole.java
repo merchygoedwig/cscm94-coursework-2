@@ -51,7 +51,7 @@ public class Hole {
 
     if (hType == HoleType.HOLE) {
       for (int i = 0; i < 4; i++) {
-        counters.push(new Counter());
+        counters.push(new Counter(Counter.CounterType.REGULAR));
       }
     }
 

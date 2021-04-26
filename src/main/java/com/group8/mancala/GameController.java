@@ -101,16 +101,10 @@ public class GameController {
     @FXML
     public Button double_points;
 
-    @FXML
-    private Text half_hand;
-
-    @FXML
-    private Text reverse_turn;
-
-    @FXML
-    private Text switch_sides;
-
     Button[] p1button;
+
+    @FXML
+    public Text last_power_up;
 
     @FXML
     Button blank_button;
@@ -216,15 +210,11 @@ public class GameController {
         if (game.getGt() == Game.GameType.TRADITIONAL) {
             continue_turn.setVisible(false);
             double_points.setVisible(false);
-            half_hand.setVisible(false);
-            reverse_turn.setVisible(false);
-            switch_sides.setVisible(false);
+            last_power_up.setVisible(false);
         } else {
             continue_turn.setVisible(!player1.getHand().usedContinueTurn());
             double_points.setVisible(!player1.getHand().usedDoublePoints());
-            half_hand.setFill(Color.GREY);
-            reverse_turn.setFill(Color.GREY);
-            switch_sides.setFill(Color.GREY);
+            last_power_up.setText("Power-up history");
         }
     }
 
@@ -277,8 +267,10 @@ public class GameController {
 
     public void useContinueTurn() {
         Hand handUsedThisRule = game.getTk().getTurnHaver().getHand();
+        handUsedThisRule.setContinueTurnThisTurn(true);
         handUsedThisRule.setContinueTurn(true);
         continue_turn.setVisible(!handUsedThisRule.usedContinueTurn());
+        handUsedThisRule.setContinueTurnThisTurn(false);
     }
 
     public void useDoublePoints() {

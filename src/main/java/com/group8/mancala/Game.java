@@ -24,8 +24,8 @@ public class Game {
     private int turnCount = 1;
     private Player player1;
     private Player player2;
-    private Player winner;
-    private Player loser;
+    public Player winner;
+    public Player loser;
 
     private GameType gt;
 

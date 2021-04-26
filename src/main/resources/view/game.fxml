@@ -257,11 +257,9 @@
                   </GridPane>
                   <GridPane id="almost_no_background">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="125.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="119.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="397.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -269,17 +267,7 @@
                      <children>
                         <Button fx:id="continue_turn" mnemonicParsing="false" onAction="#useContinueTurn" text="Continue Turn" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Button fx:id="double_points" mnemonicParsing="false" onAction="#useDoublePoints" text="Double Points" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Text fx:id="half_hand" strokeType="OUTSIDE" strokeWidth="0.0" text="Half Hand" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="Comfortaa Regular" size="13.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="reverse_turn" strokeType="OUTSIDE" strokeWidth="0.0" text="Reverse Turn" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="Comfortaa Regular" size="13.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="switch_sides" strokeType="OUTSIDE" strokeWidth="0.0" text="Switch Sides" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Text fx:id="last_power_up" strokeType="OUTSIDE" strokeWidth="0.0" text="username activated {power-up} on turn x!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Comfortaa Regular" size="13.0" />
                            </font>
