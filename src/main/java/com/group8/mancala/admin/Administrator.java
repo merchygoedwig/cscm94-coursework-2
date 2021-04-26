@@ -1,6 +1,7 @@
-package com.group8.admin;
+package com.group8.mancala.admin;
 import java.io.FileInputStream;
-import java.util.HashSet;
+import java.util.Stack;
+
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -8,6 +9,8 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
+import com.group8.mancala.Game;
+import com.group8.mancala.Main;
 import com.group8.mancala.playerfacing.Player;
 
 import javafx.scene.Node;
@@ -31,6 +34,11 @@ import javafx.scene.image.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.event.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+
 
 
 /**
@@ -43,11 +51,12 @@ import javafx.event.*;
 
 
 public class Administrator {
-
+ 
 	//the request list
 	private static ArrayList<Player> players = new ArrayList<>();
 	
-	/*
+	
+	/**
 	 * 
 	 * add player to the requested list when called by player.
 	 * and it should be static and there exist only one request list
@@ -55,6 +64,13 @@ public class Administrator {
 	public static void requestToPlay(Player p) {
 		players.add(p);
 
+	}
+	/**
+	 * getter of players, mainly for unitest use
+	 * @return ArrayList<Player> players
+	 */
+	public static ArrayList<Player> getPlayers(){
+		return players;
 	}
     /*
      *     ui control--javafx
@@ -79,7 +95,7 @@ public class Administrator {
   //add request list to table
   @FXML
   public void addToTable(){
-     
+	  selectedPlayer.clear();
 	 //add request list, 'players' to the list
 	 list = FXCollections.observableArrayList(
 			 players
@@ -103,9 +119,8 @@ public class Administrator {
   @FXML
   private HBox imgBox;
   @FXML
-  private HBox tournament;
-  @FXML 
-  private ImageView tour;
+  private VBox tournament;
+
 
 	@FXML
 	private ImageView player1Img;
@@ -120,7 +135,7 @@ public class Administrator {
  
  private ArrayList<Player> selectedPlayer = new ArrayList<>();
  final String defaultFolder = "src/image/";
- final String[] defaultImg = {defaultFolder+"tom.jpg", defaultFolder+"dylan.jpg"};
+ final String[] defaultImg = {defaultFolder+"default1.jpg", defaultFolder+"default2.jpg"};
  final String[] defaultName = {"player 1", "player2"};
  
 
@@ -160,6 +175,7 @@ public class Administrator {
      //if number of selected players equal to 2
      if(selectedPlayer.size() == 2) {
     	 gameMode.setVisible(true);
+    
      }else {
     	 gameMode.setVisible(false);
     	 for(int i = 0 ; i<img.length;i++) {
@@ -169,14 +185,16 @@ public class Administrator {
      //if number of selected player > 2 , show tournament page
      if(selectedPlayer.size() > 2) {
     	 imgBox.setVisible(false);
-    	 tournament.setPrefHeight(250);
+    	 tournament.setPrefHeight(450);
     	 tournament.setVisible(true);
-    	 tour.setFitHeight(150);
+         createTournamentTbl(selectedPlayer);    	
      }else {
     	 imgBox.setVisible(true);
+    	 tournament.getChildren().clear();
     	 tournament.setVisible(false);
     	 tournament.setPrefHeight(5);
-    	 tour.setFitHeight(5);
+    	 
+   
       }
     }
   
@@ -186,29 +204,160 @@ public class Administrator {
    */
   @FXML
   public void gameMode(ActionEvent e) throws IOException, SAXException, ParserConfigurationException, TransformerException, ParseException {
-	  
-//      System.out.println(((Button)e.getSource()).getText());
+	  Player player1 = selectedPlayer.get(0);
+	  Player player2 = selectedPlayer.get(1);
+	 
       for(Player p : selectedPlayer) {
           players.remove(p);
       }
       addToTable();
+     String gameMode = ((Button)e.getSource()).getText();
+     switch(gameMode) {
+     case  "Traditional" :
+    	   Main.setCurrentGame(new Game(player1, player2, Game.GameType.TRADITIONAL));
+    	   Main.getCurrentGame().startGame();
+      break;
+     case "Arcade" :
+    	   Main.setCurrentGame(new Game(player1, player2, Game.GameType.ARCADE));
+    	   Main.getCurrentGame().startGame();
+      break;
+     case "Challenge" :
+    	 //  Main.setCurrentGame(new Game(player1, player2, Game.GameType.CHALLENGE));
+    	 //  Main.getCurrentGame().startGame();
+      break;
+     default: 
      
-      //begin game by calling session
-      Session session = new Session(selectedPlayer);
-      session.beginGame(selectedPlayer);
+        
+     }
       selectedPlayer.clear();
+      table.getSelectionModel().select(0);
       tableHandle();
 	  
   }
-  
-//helper method for setting image
-public void setImage(ImageView iv, Label name, String text, String path) throws FileNotFoundException {
-	 FileInputStream stream = new FileInputStream(path);	
- 	 Image image = new Image(stream);
- 	 iv.setImage(image);
- 	 name.setText(text);
-}
+  @FXML
+  Button champ;
 
+   
+
+  @FXML
+  public void startTournament() throws FileNotFoundException {
 	
+	  Stack<Player> competitors = new Stack<>();
+	  //take the first 8 players at most
+	  if(selectedPlayer.size() >8) {
+	  for(int i = 0; i<8 ;i++) {
+		 competitors.push(selectedPlayer.get(i));
+		
+	  }
+	  }else {
+		  for(Player p : selectedPlayer) {
+			  competitors.push(p);
+		  }
+	  }
+	  champ.setText("playing......");
+	  //start tournament
+	  processGame(competitors);
+	 
+	  
+  }
+  /*
+   * recursive function for simulate tournament
+   */
+  private Stack<Player>  processGame(Stack<Player> competitors) throws FileNotFoundException {
+	  if(competitors.size() == 1) { 
+		  return competitors;
+		  }else {
+		  ArrayList<Player> Winners = new ArrayList<Player>();
+		  while(competitors.size() > 1) {
+			   
+			      Main.setCurrentGame(new Game(competitors.pop(),competitors.pop(), Game.GameType.TRADITIONAL));
+		          Main.getCurrentGame().startGame();
+		          // wait after game session ended
+				  Player winner = Main.getCurrentGame.winner;
+			      Player loser = Main.getCurrentGame.loser;
+                  //add winner to next round
+			      Winners.add(winner);
+			
+		  }
+		 //handle odd number players
+		 if(!competitors.isEmpty()) {
+             Winners.add(competitors.pop());
+      	 }
+		 //put winners to stack for next round
+         for(Player p : Winners) {
+             competitors.push(p);
+         }
+         //update page
+        createTournamentTbl(Winners);
+	  }
+	  return processGame(competitors);
+  }
+  
+
+/*
+ * tournament starting page
+ */
+private void createTournamentTbl(ArrayList<Player> selectedPlayer ) throws FileNotFoundException {
+   
+
+	 
+     champ.setText("Tournament");
+     champ.setPadding(new Insets(5,5,5,5));
+	 
+	 HBox v = new HBox();
+	 HBox v2 = new HBox();
+	 HBox v3 = new HBox();
+	 HBox v4 = new HBox();
+	 v4.setAlignment(Pos.CENTER);
+
+	 v4.getChildren().add(champ);
+     int count=0;
+ 
+     for(Player p :selectedPlayer ) {
+     //3 players or two players display in a row
+     if(count < 2) {
+    	 setHBox(v,p);
+     }else if(count < 6) {
+    	 setHBox(v2,p);
+     }else  if(count < 8){
+    	 setHBox(v3,p);
+     }else {
+    	 //do nothing
+     }
+     
+     count ++;  
+     
+     }
+   
+    tournament.getChildren().clear();
+    tournament.getChildren().addAll(v,v2,v3,v4);
+     
+}
+/*
+ * helper class for adding player images
+ */
+ @SuppressWarnings("static-access")
+private void setHBox(HBox v,Player p) throws FileNotFoundException {
+	VBox vb = new VBox();
+	vb.setAlignment(Pos.BOTTOM_CENTER);
+    v.setAlignment(Pos.BOTTOM_CENTER); 
+    v.setPrefWidth(130);
+    ImageView iv = new ImageView();
+    iv.setFitHeight(70);
+    iv.setFitWidth(90);
+    Label name = new Label();
+    setImage(iv,name,p.getUsername(),p.getImagePath());
+    vb.getChildren().addAll(iv, name);
+    v.setMargin(vb,new Insets(5,5,5,5 ));
+    v.getChildren().addAll(vb);
+    
+  }  
+//helper method for setting image
+private void setImage(ImageView iv, Label name, String text, String path) throws FileNotFoundException {
+	 FileInputStream stream = new FileInputStream(path);	
+	 Image image = new Image(stream);
+	 iv.setImage(image);
+	 name.setText(text);
+}
 	
 }
