@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<playerdirectory>
+<?xml version="1.0" encoding="utf-8" standalone="no"?><playerdirectory>
     <player uuid="4876240e-bea5-4654-9188-cca48c0fc395">
         <username>merchygoedwig</username>
         <firstname>Genevieve</firstname>
@@ -16,4 +15,4 @@
         <imagepath>/dir/images/aba1ca7d-17e3-4d82-ad22-a9964f411201.png</imagepath>
         <winpercentage>0.21</winpercentage>
     </player>
-</playerdirectory>
+<player uuid="243cd7ad-f4ec-4e02-b048-e074ce7fa204"><username>somePersona</username><firstname>Test</firstname><lastname>Player</lastname><lastlogin>03-12-2020 12:43:12</lastlogin><imagepath>/some/image/path</imagepath><winpercentage>0.42</winpercentage></player></playerdirectory>
