@@ -31,7 +31,7 @@ public class Game {
     private TurnKnower tk;
     private GameController gc;
 
-    enum GameType {
+   public  enum GameType {
         TRADITIONAL,
         ARCADE
     }
