@@ -42,7 +42,7 @@ public class PlayerDaoXmlImplTest {
         assertEquals(match.getLastName(), toMatch.getLastName());
         assertEquals(match.getLastLogin(), toMatch.getLastLogin());
         assertEquals(match.getImagePath(), toMatch.getImagePath());
-        assertEquals(match.getWinPercentage(), toMatch.getWinPercentage());
+        assertEquals(match.getWinCount(), toMatch.getWinCount());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class PlayerDaoXmlImplTest {
         assertEquals(match.getLastName(), toMatch.getLastName());
         assertEquals(match.getLastLogin(), toMatch.getLastLogin());
         assertEquals(match.getImagePath(), toMatch.getImagePath());
-        assertEquals(match.getWinPercentage(), toMatch.getWinPercentage());
+        assertEquals(match.getWinCount(), toMatch.getWinCount());
     }
 
     @Test

@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><playerdirectory>
-    <player uuid="4876240e-bea5-4654-9188-cca48c0fc395">
-        <username>merchygoedwig</username>
-        <firstname>Genevieve</firstname>
-        <lastname>Clifford</lastname>
-        <lastlogin>10-04-2020 13:54:27</lastlogin>
-        <imagepath>src/main/resources/image/genevieve_fursona.png</imagepath>
-        <winpercentage>0.83</winpercentage>
-    </player>
-    <player uuid="aba1ca7d-17e3-4d82-ad22-a9964f411201">
-        <username>secondtechaj</username>
-        <firstname>Arnold</firstname>
-        <lastname>Judas Rimmer</lastname>
-        <lastlogin>01-09-2188 00:32:01</lastlogin>
-        <imagepath>src/main/resources/image/rimmer.jpg</imagepath>
-        <winpercentage>0.21</winpercentage>
-    </player>
-    <player uuid="e8b2a98e-6d22-437d-b0e3-ab3c98b97c77">
-        <username>ouroboros</username>
-        <firstname>David</firstname>
-        <lastname>Lister</lastname>
-        <lastlogin>01-09-2188 00:41:27</lastlogin>
-        <imagepath>src/main/resources/image/lister.JPG</imagepath>
-        <winpercentage>0.56</winpercentage>
-    </player>
-</playerdirectory>
+    
+    
+    
+<player uuid="e8b2a98e-6d22-437d-b0e3-ab3c98b97c77"><username>ouroboros</username><firstname>David</firstname><lastname>Lister</lastname><lastlogin>27-04-2021 21:17:26</lastlogin><imagepath>src/main/resources/image/lister.JPG</imagepath><winpercentage>15</winpercentage></player><player uuid="4876240e-bea5-4654-9188-cca48c0fc395"><username>merchygoedwig</username><firstname>Genevieve</firstname><lastname>Clifford</lastname><lastlogin>27-04-2021 22:05:11</lastlogin><imagepath>src/main/resources/image/genevieve_fursona.png</imagepath><winpercentage>16</winpercentage></player><player uuid="aba1ca7d-17e3-4d82-ad22-a9964f411201"><username>secondtechaj</username><firstname>Arnold</firstname><lastname>Judas Rimmer</lastname><lastlogin>27-04-2021 22:05:11</lastlogin><imagepath>src/main/resources/image/rimmer.jpg</imagepath><winpercentage>6</winpercentage></player></playerdirectory>

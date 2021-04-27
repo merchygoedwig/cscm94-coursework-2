@@ -10,7 +10,7 @@ public class Player implements Comparable<Player> {
     private String lastName;
     private Date lastLogin;
     private String imagePath;
-    private Double winPercentage;
+    private int winCount;
     private Hand hand;
     private int counterTotal = 0;
     private boolean computerControlled;
@@ -36,14 +36,14 @@ public class Player implements Comparable<Player> {
      * @param ip path to the player's image
      * @param wp win percentage
      */
-    public Player(String un, String fn, String ln, Date ll, String ip, Double wp) {
+    public Player(String un, String fn, String ln, Date ll, String ip, int wp) {
         uuid = UUID.randomUUID();
         username = un;
         firstName = fn;
         lastName = ln;
         lastLogin = ll;
         imagePath = ip;
-        winPercentage = wp;
+        winCount = wp;
     }
 
     /**
@@ -56,14 +56,14 @@ public class Player implements Comparable<Player> {
      * @param ip path to the player's image
      * @param wp win percentage
      */
-    public Player(UUID uu, String un, String fn, String ln, Date ll, String ip, Double wp) {
+    public Player(UUID uu, String un, String fn, String ln, Date ll, String ip, int wp) {
         uuid = uu;
         username = un;
         firstName = fn;
         lastName = ln;
         lastLogin = ll;
         imagePath = ip;
-        winPercentage = wp;
+        winCount = wp;
 
     }
 
@@ -167,16 +167,16 @@ public class Player implements Comparable<Player> {
      * Getter for win percentage for player
      * @return win percentage for player
      */
-    public Double getWinPercentage() {
-        return winPercentage;
+    public int getWinCount() {
+        return winCount;
     }
 
     /**
      * Setter for win percentage for player
-     * @param winPercentage win percentage for player
+     * @param winCount win percentage for player
      */
-    public void setWinPercentage(Double winPercentage) {
-        this.winPercentage = winPercentage;
+    public void setWinCount(int winCount) {
+        this.winCount = winCount;
     }
 
     /**
@@ -186,7 +186,7 @@ public class Player implements Comparable<Player> {
      */
     @Override
     public int compareTo(Player player) {
-        return getWinPercentage().compareTo(player.getWinPercentage());
+        return Integer.compare(getWinCount(), player.getWinCount());
     }
 
     /**
@@ -221,33 +221,66 @@ public class Player implements Comparable<Player> {
         this.counterTotal = counterTotal;
     }
 
+    /**
+     * Getter for computerControlled
+     * @return computerControlled boolean
+     */
     public boolean isComputerControlled() {
         return computerControlled;
     }
 
+    /**
+     * Setter for computerControlled
+     * @param computerControlled boolean for computerControlled
+     */
     public void setComputerControlled(boolean computerControlled) {
         this.computerControlled = computerControlled;
     }
+
+    /**
+     * Getter for Player's instance of ComputerControl
+     * @return {@link ComputerControl}
+     */
     public ComputerControl getAi() {
         return ai;
     }
 
+    /**
+     * Setter for Player's instance of ComputerControl
+     * @param ai {@link ComputerControl}
+     */
     public void setAi(ComputerControl ai) {
         this.ai = ai;
     }
 
+    /**
+     * Gets the number of counters in a Mancala before Double Score is issued
+     * @return number of counters in a Mancala initially
+     */
     public int getInitialMancalaStore() {
         return initialMancalaStore;
     }
 
+    /**
+     * Sets the number of counters in a Mancala before Double Score is issued
+     * @param initialMancalaStore
+     */
     public void setInitialMancalaStore(int initialMancalaStore) {
         this.initialMancalaStore = initialMancalaStore;
     }
 
+    /**
+     * Gets the number of counters in a Mancala after Double Score has completed
+     * @return final number of counters in a Mancala
+     */
     public int getFinalMancalaScore() {
         return finalMancalaScore;
     }
 
+    /**
+     * Sets the number of counters in a Mancala after Double Score has completed
+     * @param finalMancalaScore final number of counters in a Mancala
+     */
     public void setFinalMancalaScore(int finalMancalaScore) {
         this.finalMancalaScore = finalMancalaScore;
     }

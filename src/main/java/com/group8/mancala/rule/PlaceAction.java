@@ -10,7 +10,10 @@ import com.group8.mancala.playerfacing.Player;
  *
  * @author Genevieve Clifford
  * @version 1.0
+ * @deprecated
+ * Rules implemented in {@link com.group8.mancala.GameController} instead
  */
+@Deprecated
 public class PlaceAction extends HandAction {
     /**
      * Default constructor for MoveAction, this is to be used in the context

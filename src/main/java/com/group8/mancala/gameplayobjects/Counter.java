@@ -8,6 +8,9 @@ package com.group8.mancala.gameplayobjects;
 public class Counter {
     private CounterType ct;
 
+    /**
+     * Enum to represent the different types of Counters in the game
+     */
     public enum CounterType{
         REGULAR {
             @Override
@@ -35,10 +38,18 @@ public class Counter {
         }
     }
 
+    /**
+     * Main constructor for Counter
+     * @param ct {@link CounterType} for the counter in use
+     */
     public Counter(CounterType ct) {
         this.ct = ct;
     }
 
+    /**
+     * Getter for the counter type on a counter
+     * @return counter's counter type
+     */
     public CounterType getCt() {
         return ct;
     }

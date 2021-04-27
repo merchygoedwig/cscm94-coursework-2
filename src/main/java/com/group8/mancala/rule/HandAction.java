@@ -6,7 +6,12 @@ import com.group8.mancala.playerfacing.Player;
 
 /**
  * HoleAction is an implementation of the Rule class for interactions between instances of Hole and Player.
+ * @author Genevieve Clifford
+ * @version 1.0
+ * @deprecated
+ * Rules implemented in {@link com.group8.mancala.GameController} instead
  */
+@Deprecated
 abstract class HandAction implements Rule {
 
     protected Player originator;

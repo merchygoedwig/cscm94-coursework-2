@@ -24,12 +24,10 @@ public class Hand {
 
     private Counter.CounterType[] counterChoices;
 
-// These are extensions of the generic HandAction class that is used to determine if an action taken by a
-// hand is a valid one or not
-//    private DrawAction da;
-//    private InventoryAction ia;
-//    private PlaceAction pa;
-
+    /**
+     * Main constructor for hand, deals with logic of special counter types for Arcade games
+     * @param associatedPlayer
+     */
     public Hand(Player associatedPlayer) {
         this.associatedPlayer = associatedPlayer;
 
@@ -46,69 +44,6 @@ public class Hand {
         counterChoices[ptr] = Counter.CounterType.HALF_HAND;
         counterChoices[ptr + 1] = Counter.CounterType.REVERSE_TURN;
         counterChoices[ptr + 2] = Counter.CounterType.SWITCH_SIDES;
-
-
-//        Not actually implemented yet! Will be for the arcade mode :3
-
-//        da = new DrawAction(this.associatedPlayer);
-//        ia = new InventoryAction(this.associatedPlayer);
-//        pa = new PlaceAction(this.associatedPlayer);
-    }
-
-    public boolean usedContinueTurn() {
-        return continueTurn;
-    }
-
-    public void setContinueTurn(boolean continueTurn) {
-        this.continueTurn = continueTurn;
-    }
-
-    public boolean usedDoublePoints() {
-        return doublePoints;
-    }
-
-    public void setDoublePoints(boolean doublePoints) {
-        this.doublePoints = doublePoints;
-    }
-
-    public boolean isContinueTurnThisTurn() {
-        return continueTurnThisTurn;
-    }
-
-    public void setContinueTurnThisTurn(boolean continueTurnThisTurn) {
-        this.continueTurnThisTurn = continueTurnThisTurn;
-    }
-
-    public boolean isDoublePointsThisTurn() {
-        return doublePointsThisTurn;
-    }
-
-    public void setDoublePointsThisTurn(boolean doublePointsThisTurn) {
-        this.doublePointsThisTurn = doublePointsThisTurn;
-    }
-
-    public boolean isHalfHand() {
-        return halfHand;
-    }
-
-    public void setHalfHand(boolean halfHand) {
-        this.halfHand = halfHand;
-    }
-
-    public boolean isReverseTurn() {
-        return reverseTurn;
-    }
-
-    public void setReverseTurn(boolean reverseTurn) {
-        this.reverseTurn = reverseTurn;
-    }
-
-    public boolean isSwitchSides() {
-        return switchSides;
-    }
-
-    public void setSwitchSides(boolean switchSides) {
-        this.switchSides = switchSides;
     }
 
     /**
@@ -128,6 +63,11 @@ public class Hand {
         countersInHand.push(c);
     }
 
+    /**
+     * Displays the last type of counter that is picked up by a hand, switches booleans on hand to assist
+     * {@link GameController} with checking moves
+     * @param c an instance of {@link Counter}
+     */
     public void handleSpecialCounter(Counter c) {
         GameController gc = Main.getCurrentGame().getGc();
         Counter.CounterType ct = c.getCt();
@@ -152,7 +92,7 @@ public class Hand {
 
     /**
      * Distributes counters through the HoleLinkedList in the game, according to the rules given in the specification
-     * @param hole the hole for which the distributeCounters action was triggered on
+     * @param hole the {@link Hole} for which the distributeCounters action was triggered on
      */
     public void distributeCounters(Hole hole) {
         Hole curPtr = hole;
@@ -223,5 +163,117 @@ public class Hand {
         if (!(curPtr.gethType() == Hole.HoleType.MANCALA && curPtr.getAssignedPlayer() == associatedPlayer)) {
             tk.nextTurn();
         }
+    }
+
+    /**
+     * Getter for continueTurn
+     * @return continueTurn boolean
+     */
+    public boolean usedContinueTurn() {
+        return continueTurn;
+    }
+
+    /**
+     * Setter for continueTurn
+     * @param continueTurn boolean for continueTurn
+     */
+    public void setContinueTurn(boolean continueTurn) {
+        this.continueTurn = continueTurn;
+    }
+
+    /**
+     * Getter for doublePoints
+     * @return doublePoints boolean
+     */
+    public boolean usedDoublePoints() {
+        return doublePoints;
+    }
+
+    /**
+     * Setter for doublePoints
+     * @param doublePoints boolean for doublePoints
+     */
+    public void setDoublePoints(boolean doublePoints) {
+        this.doublePoints = doublePoints;
+    }
+
+    /**
+     * Getter for continueTurnThisTurn
+     * @return continueTurnThisTurn boolean
+     */
+    public boolean isContinueTurnThisTurn() {
+        return continueTurnThisTurn;
+    }
+
+    /**
+     * Setter for continueTurnThisTurn
+     * @param continueTurnThisTurn boolean for continueTurnThisTurn
+     */
+    public void setContinueTurnThisTurn(boolean continueTurnThisTurn) {
+        this.continueTurnThisTurn = continueTurnThisTurn;
+    }
+
+    /**
+     * Getter for doublePointsThisTurn
+     * @return doublePointsThisTurn boolean
+     */
+    public boolean isDoublePointsThisTurn() {
+        return doublePointsThisTurn;
+    }
+
+    /**
+     * Setter for doublePointsThisTurn
+     * @param doublePointsThisTurn boolean for doublePointsThisTurn
+     */
+    public void setDoublePointsThisTurn(boolean doublePointsThisTurn) {
+        this.doublePointsThisTurn = doublePointsThisTurn;
+    }
+
+    /**
+     * Getter for halfHand
+     * @return halfHand boolean
+     */
+    public boolean isHalfHand() {
+        return halfHand;
+    }
+
+    /**
+     * Setter for halfHand
+     * @param halfHand boolean for halfHand
+     */
+    public void setHalfHand(boolean halfHand) {
+        this.halfHand = halfHand;
+    }
+
+    /**
+     * Getter for reverseTurn
+     * @return reverseTurn boolean
+     */
+    public boolean isReverseTurn() {
+        return reverseTurn;
+    }
+
+    /**
+     * Setter for reverseTurn
+     * @param reverseTurn boolean for reverseTurn
+     */
+    public void setReverseTurn(boolean reverseTurn) {
+        this.reverseTurn = reverseTurn;
+    }
+
+    /**
+     * Getter for switchSides
+     * @return switchSides boolean
+     */
+    public boolean isSwitchSides() {
+        return switchSides;
+    }
+
+    /**
+     * Setter for switchSides
+     * @param switchSides boolean for switchSides
+     */
+    public void setSwitchSides(boolean switchSides) {
+        this.switchSides = switchSides;
     }
 }

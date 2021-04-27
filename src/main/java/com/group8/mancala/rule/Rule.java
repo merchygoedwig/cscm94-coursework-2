@@ -12,7 +12,10 @@ package com.group8.mancala;
  *
  * @author Genevieve Clifford
  * @version 1.0
+ * @deprecated
+ * Rules implemented in {@link com.group8.mancala.GameController} instead
  */
+@Deprecated
 public interface Rule {
     /**
      * Checks for if a rule is violated by a move or not

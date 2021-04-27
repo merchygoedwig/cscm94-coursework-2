@@ -12,12 +12,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import javax.xml.transform.TransformerException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 
 /**
  * JavaFX controller which interfaces with both the underlying Game class, and also the FXML described view, giving a
@@ -30,10 +32,6 @@ public class GameController {
 
     private Hole[] computerHoles;
 
-    public Hole[] p1h;
-    public Hole[] p2h;
-//    public Mancala p1m;
-//    public Mancala p2m;
 
     private final Game game;
 
@@ -254,14 +252,30 @@ public class GameController {
      * @param actionEvent
      * @throws IOException
      */
-    public void endGame(ActionEvent actionEvent) throws IOException {
+    public void endGame(ActionEvent actionEvent) throws IOException, TransformerException, ParseException {
         Main.getCurrentGame().determineWinLoss();
+        Player winner = Main.getCurrentGame().getWinner();
+        Player loser = Main.getCurrentGame().getLoser();
+        winner.setWinCount(winner.getWinCount() + 1);
+        winner.setLastLogin(new Date());
+        loser.setLastLogin(new Date());
+        Main.getPlayerDao().update(winner);
+        Main.getPlayerDao().update(loser);
         new SceneLoader("/view/admin.fxml").load();
     }
+
+    /**
+     * Gets a primitive array of all the holes that are of type
+     * {@link com.group8.mancala.gameplayobjects.Hole.HoleType#MANCALA} and belong to the computer player
+     * @return
+     */
     public Hole[] getComputerHoles() {
         return computerHoles;
     }
 
+    /**
+     * Logic for handling the continue turn rule (not yet implemented)
+     */
     public void useContinueTurn() {
         Hand handUsedThisRule = game.getTk().getTurnHaver().getHand();
         handUsedThisRule.setContinueTurnThisTurn(true);
@@ -271,6 +285,9 @@ public class GameController {
         handUsedThisRule.setContinueTurnThisTurn(false);
     }
 
+    /**
+     * Logic for handling the use double points rule
+     */
     public void useDoublePoints() {
         Player playerUsedThisRule = game.getTk().getTurnHaver();
         Hand handUsedThisRule = playerUsedThisRule.getHand();

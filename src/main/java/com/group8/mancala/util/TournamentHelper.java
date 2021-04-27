@@ -7,6 +7,13 @@ import com.group8.mancala.playerfacing.Player;
 import java.io.IOException;
 import java.util.Stack;
 
+/**
+ * This class represents the logic behind the TournamentHelper class
+ * @author Genevieve Clifford
+ * @version InDev
+ * @deprecated
+ * Not implemented
+ */
 public class TournamentHelper {
     private Stack<Player> playerStack;
     private Player currentPlayer1;

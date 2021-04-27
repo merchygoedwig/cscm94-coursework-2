@@ -14,7 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -90,10 +89,10 @@ public class PlayerDaoXmlImpl implements PlayerDao{
                 _getXMLAttribute(ePlayer, "lastlogin")
         );
         String imagePath = _getXMLAttribute(ePlayer, "imagepath");
-        Double winPercentage = Double.parseDouble(
+        int winCount = Integer.parseInt(
                 _getXMLAttribute(ePlayer, "winpercentage")
         );
-        return new Player(uuid, username, firstName, lastName, lastLogin, imagePath, winPercentage);
+        return new Player(uuid, username, firstName, lastName, lastLogin, imagePath, winCount);
     }
 
     @Override
@@ -151,7 +150,7 @@ public class PlayerDaoXmlImpl implements PlayerDao{
         imagePath.appendChild(document.createTextNode(player.getImagePath()));
         newPlayer.appendChild(imagePath);
 
-        winPercentage.appendChild(document.createTextNode(player.getWinPercentage().toString()));
+        winPercentage.appendChild(document.createTextNode(String.valueOf(player.getWinCount())));
         newPlayer.appendChild(winPercentage);
 
         root.appendChild(newPlayer);

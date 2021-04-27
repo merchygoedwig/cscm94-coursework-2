@@ -17,11 +17,17 @@ public class ComputerControl {
     private GameController gc;
     private Random random = new Random();
 
+    /**
+     * Main constructor for ComputerControl
+     */
     public ComputerControl() {
         this.gc = Main.getCurrentGame().getGc();
         legalMoves = gc.getComputerHoles();
     }
 
+    /**
+     * Selects a random hole and performs {@link Hole#giveAllCountersToHand()} on that {@link Hole}
+     */
     public void performRandomLegalMove() {
         int noHoles = legalMoves.length;
         System.out.println(noHoles);

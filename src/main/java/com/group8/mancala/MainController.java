@@ -1,6 +1,5 @@
 package com.group8.mancala;
 
-import com.group8.mancala.playerfacing.ComputerControl;
 import com.group8.mancala.playerfacing.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,7 +55,7 @@ public class MainController {
                 "985",
                 new Date(),
                 "src/main/resources/view/JermaSus.jpg",
-                0.922
+                3
         );
 
         Player otherjerma = new Player(
@@ -65,7 +64,7 @@ public class MainController {
                 "Clifford",
                 new Date(),
                 "src/main/resources/view/genevieve_fursona.png",
-                0.757
+                10
         );
 
         Player kryten = new Player(
@@ -74,7 +73,7 @@ public class MainController {
                 "2X4B-523P",
                 new Date(),
                 "src/main/resources/view/kryten.jpeg",
-                0.25
+                20
         );
 
         kryten.setComputerControlled(true);
@@ -87,13 +86,13 @@ public class MainController {
         P1U.setText(jermasus.getUsername());
         P1F.setText(jermasus.getFirstName());
         P1L.setText(jermasus.getLastName());
-        P1W.setText(String.valueOf(jermasus.getWinPercentage()));
+        P1W.setText(String.valueOf(jermasus.getWinCount()));
 
         P2I.setImage(new Image(new FileInputStream(otherjerma.getImagePath())));
         P2U.setText(otherjerma.getUsername());
         P2F.setText(otherjerma.getFirstName());
         P2L.setText(otherjerma.getLastName());
-        P2W.setText(String.valueOf(otherjerma.getWinPercentage()));
+        P2W.setText(String.valueOf(otherjerma.getWinCount()));
     }
 
     /**
