@@ -5,6 +5,7 @@ import com.group8.mancala.Main;
 import com.group8.mancala.persistence.PlayerDao;
 import com.group8.mancala.persistence.PlayerDaoXmlImpl;
 import com.group8.mancala.playerfacing.Player;
+import com.group8.mancala.util.TournamentHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Controller for FXML Main class that deals with player assignment
@@ -39,6 +41,9 @@ public class NewAdministratorController {
 
     @FXML
     private TableView<Player> player_table;
+
+    @FXML
+    private TableView<Player> tournament_table;
 
     private PlayerPreview p1_pp;
     @FXML
@@ -70,9 +75,16 @@ public class NewAdministratorController {
 
     @FXML
     private Button traditional_mode;
-
     @FXML
     private Button arcade_mode;
+    @FXML
+    private Button tournament_assign;
+    @FXML
+    private Button tournament_remove;
+    @FXML
+    private Button tournament_traditional;
+    @FXML
+    private Button tournament_arcade;
 
     private ArrayList<Player> playerListFromDao;
 
@@ -97,6 +109,10 @@ public class NewAdministratorController {
             lname.setText(ln);
             wper.setText(wp);
             iview.setImage(new Image(new FileInputStream(ip)));
+        }
+
+        public void initialize(String un) throws FileNotFoundException {
+            update(un, "Player", "Last Name", "0.50", "src/main/resources/image/decamarks.png");
         }
 
         public void update(Player p) throws FileNotFoundException {
@@ -127,11 +143,14 @@ public class NewAdministratorController {
     public NewAdministratorController() throws ParserConfigurationException, SAXException, TransformerConfigurationException, IOException {
     }
 
-    public void initialize() throws ParseException {
+    public void initialize() throws ParseException, FileNotFoundException {
         playerListFromDao = dao.getAll();
 
         TableColumn<Player, String> usernameCol = new TableColumn<>("Username");
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+
+        TableColumn<Player, String> tournUsernameCol = new TableColumn<>("Username");
+        tournUsernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         TableColumn<Player, String> fNameCol = new TableColumn<>("First Name");
         fNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -147,6 +166,8 @@ public class NewAdministratorController {
         player_table.getColumns().add(lNameCol);
         player_table.getColumns().add(wPercent);
 
+        tournament_table.getColumns().add(tournUsernameCol);
+
         for (Player p : playerListFromDao) {
             player_table.getItems().add(p);
         }
@@ -154,8 +175,8 @@ public class NewAdministratorController {
         p1_pp = new PlayerPreview(p1_username, p1_fname, p1_lname, p1_wpercent, p1_avi);
         p2_pp = new PlayerPreview(p2_username, p2_fname, p2_lname, p2_wpercent, p2_avi);
 
-        p1_pp.setInvisible();
-        p2_pp.setInvisible();
+        p1_pp.initialize("Player 1");
+        p2_pp.initialize("Player 2");
 
         assign_p1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -165,8 +186,8 @@ public class NewAdministratorController {
                     p1_pp.setVisible();
                     p1_pp.update(selectedPlayer);
                     player1 = selectedPlayer;
-                } catch (NullPointerException | FileNotFoundException e) {
-                    p1_pp.setInvisible();
+                } catch (NullPointerException | FileNotFoundException ignored) {
+                    //do nothing here
                 }
             }
         });
@@ -179,8 +200,8 @@ public class NewAdministratorController {
                     p2_pp.setVisible();
                     p2_pp.update(selectedPlayer);
                     player2 = selectedPlayer;
-                } catch (NullPointerException | FileNotFoundException e) {
-                    p2_pp.setInvisible();
+                } catch (NullPointerException | FileNotFoundException ignored) {
+                    //do nothing here
                 }
             }
         });
@@ -203,6 +224,36 @@ public class NewAdministratorController {
                 Main.setCurrentGame(new Game(player1, player2, Game.GameType.ARCADE, false));
                 try {
                     Main.getCurrentGame().startGame();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        tournament_assign.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Player selectedPlayer = player_table.getSelectionModel().getSelectedItem();
+                tournament_table.getItems().add(selectedPlayer);
+            }
+        });
+
+        tournament_remove.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Player selectedPlayer = tournament_table.getSelectionModel().getSelectedItem();
+                tournament_table.getItems().remove(selectedPlayer);
+            }
+        });
+
+        tournament_traditional.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stack<Player> playersToPassIn = new Stack<>();
+                tournament_table.getItems().forEach(playersToPassIn::push);
+                TournamentHelper th = new TournamentHelper(playersToPassIn);
+                try {
+                    th.doTraditionalTournament();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
