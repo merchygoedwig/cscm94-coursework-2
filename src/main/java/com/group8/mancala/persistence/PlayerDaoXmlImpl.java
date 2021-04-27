@@ -30,7 +30,7 @@ public class PlayerDaoXmlImpl implements PlayerDao{
     final private Document document;
     final private NodeList players;
     final private SimpleDateFormat dateFormatter;
-    private ArrayList<Player> playerList;
+    private ArrayList<Player> playerList = new ArrayList<>();
     final private Element root;
     private Transformer transformer;
     private String fp;
@@ -110,7 +110,6 @@ public class PlayerDaoXmlImpl implements PlayerDao{
 
 
     private ArrayList<Player> _getAll() throws ParseException {
-        playerList.clear();
         int i;
         for (i = 0; i < players.getLength(); i++) {
             Node player = players.item(i);
@@ -121,7 +120,7 @@ public class PlayerDaoXmlImpl implements PlayerDao{
     }
 
     @Override
-    public List<Player> getAll() throws ParseException {
+    public ArrayList<Player> getAll() throws ParseException {
         return _getAll();
     }
 

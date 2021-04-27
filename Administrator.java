@@ -4,16 +4,13 @@ import java.util.Stack;
 
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
 import com.group8.mancala.Game;
-import com.group8.mancala.Main;
 import com.group8.mancala.playerfacing.Player;
 
-import javafx.scene.Node;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -23,19 +20,15 @@ import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.event.*;
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 

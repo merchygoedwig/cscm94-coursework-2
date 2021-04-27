@@ -4,6 +4,7 @@ import com.group8.mancala.playerfacing.Player;
 
 import javax.xml.transform.TransformerException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,7 +38,7 @@ public interface PlayerDao {
      * @return list of all players in the DAO
      * @throws ParseException no players in DAO
      */
-    List<Player> getAll() throws ParseException;
+    ArrayList<Player> getAll() throws ParseException;
 
     /**
      * Saves a new player to the DAO

@@ -256,7 +256,7 @@ public class GameController {
      */
     public void endGame(ActionEvent actionEvent) throws IOException {
         Main.getCurrentGame().determineWinLoss();
-        new SceneLoader("/view/testmain.fxml").load();
+        new SceneLoader("/view/admin.fxml").load();
     }
     public Hole[] getComputerHoles() {
         return computerHoles;

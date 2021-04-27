@@ -1,13 +1,9 @@
 package com.group8.mancala.playerfacing;
 
-import com.group8.mancala.Game;
 import com.group8.mancala.GameController;
 import com.group8.mancala.Main;
 import com.group8.mancala.gameplayobjects.Hole;
-import com.group8.mancala.util.HoleContainer;
-import com.group8.mancala.util.HoleLinkedList;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**

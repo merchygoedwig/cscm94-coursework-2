@@ -5,10 +5,6 @@ import com.group8.mancala.GameController;
 import com.group8.mancala.Main;
 import com.group8.mancala.gameplayobjects.Counter;
 import com.group8.mancala.gameplayobjects.Hole;
-import com.group8.mancala.rule.DrawAction;
-import com.group8.mancala.rule.InventoryAction;
-import com.group8.mancala.rule.PlaceAction;
-import javafx.scene.paint.Color;
 
 import java.util.Random;
 import java.util.Stack;
