@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.CardPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="45.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@genevieve_fursona.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="45.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@JermaSus.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="87.0" layoutY="74.0" prefHeight="17.0" prefWidth="88.0" text="Genevieve Clifford" />
+      <Label layoutX="87.0" layoutY="164.0" text="Josh Thurman" />
+      <ListView layoutX="207.0" layoutY="35.0" prefHeight="200.0" prefWidth="162.0" />
+      <Label layoutX="207.0" layoutY="14.0" prefHeight="17.0" prefWidth="88.0" text="Leader Board" />
+      <CardPane layoutX="207.0" layoutY="35.0" prefHeight="200.0" prefWidth="162.0">
+          <Label prefHeight="37.0" prefWidth="89.0" style="-fx-padding:10;" text="Player 1" />
+          <Label prefHeight="37.0" prefWidth="77.0" style="-fx-padding:10;" text="Player 2" />
+          <Label style="-fx-padding:10;" text="Player 3" />
+      </CardPane>
+   </children>
+</AnchorPane>
