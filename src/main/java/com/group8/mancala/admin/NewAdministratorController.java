@@ -24,8 +24,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Controller for FXML Main class that deals with player assignment
+ * @author Genevieve Clifford
+ * @version InDev
+ */
 public class NewAdministratorController {
 
     Player player1;
